@@ -37,7 +37,6 @@ class Form extends Component
     }
 
     public function save(){
-        dd($this->action, '1');
         if($this->action == 'incluir'){
             (new PerguntaService())->create([
                 'codigo'           => $this->codigo,
