@@ -16,11 +16,7 @@ return new class extends Migration
         Schema::create('perguntas', function (Blueprint $table) {
             $table->id();
             $table->string('codigo', 6);
-            $table->string('nome', 100);
-            $table->string('input_id', 50);
-            $table->string('label', 50);
-            $table->string('class');
-            $table->string('input_type', '50');
+            $table->string('descricao', 100);
             $table->string('mensagem_tooltip');
             $table->timestamps();
         });
