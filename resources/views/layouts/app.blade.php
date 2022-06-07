@@ -32,7 +32,7 @@
     <main>
         <!-- Breadcrumbs -->
         @if(Session::has('breadcrumbs'))
-        <div class="pl-5 pt-5 pb-0 text-sm breadcrumbs">
+        <div class="pl-6 pt-5 pb-0 text-sm breadcrumbs">
             <ul>
                 <li>
                     <a href="/">
