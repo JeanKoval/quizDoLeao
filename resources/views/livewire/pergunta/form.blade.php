@@ -1,9 +1,8 @@
 <div>
 
-    <div class="card m-10 bg-base-100 shadow-xl">
+    <div class="card m-5 bg-base-100 shadow-xl">
         <div class="card-body">
-            <h2 class="card-title">Pergunta - {{ strtoupper($action) }}</h2>
-            <form method="post" wire:submit.prevent="save">
+            <form wire:submit.prevent="save">
                 <div class="grid grid-cols-2">
 
                     <div class="form-control py-2">
