@@ -17,26 +17,22 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
                     </svg>
                 </button>
-                <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                    <ul class="menu menu-compact bg-base-100 w-56 p-2 rounded-box">
+                <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                    <li>
+                        <a href="{{ route('profile.show') }}">
+                            Profile
+                        </a>
+                    </li>
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+
                         <li>
-                            <a href="{{ route('profile.show') }}">
-                                Profile
+                            <a href="{{ route('logout') }}" @click.prevent="$root.submit();">
+                                Sair
                             </a>
                         </li>
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}" x-data>
-                            @csrf
-
-                            <li>
-                                <a href="{{ route('logout') }}" @click.prevent="$root.submit();">
-                                    Sair
-                                </a>
-                            </li>
-                        </form>
-                        <!-- <li><a>Item 2</a></li>
-                        <li><a>Item 3</a></li> -->
-                    </ul>
+                    </form>
                 </ul>
             </div>
         </div>
