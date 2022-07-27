@@ -38,20 +38,11 @@
                     <tbody>
                         @foreach($perguntas as $pergunta)
                         <tr>
-                            <td> 
-                                <a class="link" href="/pergunta/visualizar/{{ $pergunta->id }}">
-                                    {{ $pergunta->codigo }} 
-                                </a>
-                            </td>
+                            <td> {{ $pergunta->codigo }} </td>
                             <td> {{ $pergunta->descricao }} </td>
                             <td> {{ $pergunta->mensagem_tooltip }} </td>
                             <td>
-                                <a href="/pergunta/alterar/{{ $pergunta->id }}">
-                                    <button class="btn btn-outline btn-warning">Alterar</button>
-                                </a>
-                                <a href="/pergunta/excluir/{{ $pergunta->id }}">
-                                    <button class="btn btn-outline btn-error">Excluir</button>
-                                </a>
+                                @livewire('buttons-crud', [ $pergunta->id, '/pergunta' ])   
                             </td>
                         </tr>
                         @endforeach
