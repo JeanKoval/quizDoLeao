@@ -1,5 +1,5 @@
 <div>
-
+    @livewire('button-back-form', ['/pergunta'])
     <div class="card m-5 bg-base-100 shadow-xl">
         <div class="card-body">
             <form wire:submit.prevent="save">
@@ -44,7 +44,7 @@
                     <div></div>
                     <div></div>
                     <div></div>
-                    <button wire:click="back" class="btn btn-outline btn-info">Voltar</button>
+                    <!-- <button wire:click="back" class="btn btn-outline btn-info">Voltar</button> -->
                     <button type="submit" class="btn btn-outline btn-success">Salvar</button>
                 </div>
             </form>
