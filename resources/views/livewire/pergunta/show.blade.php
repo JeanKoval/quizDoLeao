@@ -1,7 +1,7 @@
 <div>
     <!-- Flash Data -->
     @if(Session::has('redirect-pergunta'))
-    <div class="flash-data">
+    <div class="flash-data px-5 pt-3">
         <div class="alert alert-success shadow-lg">
             <div>
                 <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
