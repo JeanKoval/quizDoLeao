@@ -40,14 +40,6 @@
                 @endif
 
                 @livewire('button-confirm-form', [$action])
-                <!-- <div class="grid grid-cols-6">
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                    <button wire:click="back" class="btn btn-outline btn-info">Voltar</button>
-                    <button type="submit" class="btn btn-outline btn-success">Salvar</button>
-                </div> -->
             </form>
         </div>
     </div>
