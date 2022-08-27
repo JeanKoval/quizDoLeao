@@ -31,13 +31,13 @@
                             </span>
                         </label>
                         <input 
-                            @if (in_array($action, ['visualizar','revisao'])) { readonly } @endif
+                            @if (in_array($action, ['visualizar','revisao', 'inativar'])) { readonly } @endif
                             required
                             wire:model="numero"
                             type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
                             placeholder="Número..." 
                             class="input input-bordered w-full max-w-xs
-                                @if (in_array($action, ['visualizar','revisao'])) { readonly } @endif" 
+                                @if (in_array($action, ['visualizar','revisao', 'inativar'])) { readonly } @endif" 
                             maxlength="6"/>
                     </div>
 
@@ -73,7 +73,7 @@
                                 <span class="text-red-700" title="Campo obrigatório">*</span>
                             </span>
                         </label>
-                        @if (in_array($action, ['visualizar','revisao']))
+                        @if (in_array($action, ['visualizar','revisao', 'inativar']))
                             <input 
                             readonly
                             value="@if($tipo==1) Real @else Alteração @endif"
@@ -95,7 +95,8 @@
                     <label class="label">
                         <span class="label-text">Descrição</span>
                     </label>
-                    <textarea 
+                    <textarea
+                        @if (in_array($action, ['visualizar', 'inativar'])) { readonly } @endif
                         wire:model="descricao" class="textarea textarea-bordered" 
                         placeholder="Descrição...">
                     </textarea>
