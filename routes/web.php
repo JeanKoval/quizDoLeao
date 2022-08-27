@@ -29,3 +29,6 @@ Route::middleware([
 
 Route::get('/pergunta', \App\Http\Livewire\Pergunta\Show::class)->name('perguntaShow');
 Route::get('/pergunta/{action}/{pergunta?}', \App\Http\Livewire\Pergunta\Form::class)->name('perguntaForm');
+
+Route::get('/base-juridica', \App\Http\Livewire\BaseJuridica\Show::class)->name('baseJuridicaShow');
+Route::get('/base-juridica/{action}/{baseJuridica?}', \App\Http\Livewire\BaseJuridica\Form::class)->name('baseJuridicaForm');
