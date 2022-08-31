@@ -25,8 +25,14 @@
                 </li>
                 <li>
                     <a href="/pergunta">
-                        <ion-icon name="help-outline"></ion-icon>
+                        <ion-icon name="help-circle-outline"></ion-icon>
                         Perguntas
+                    </a>
+                </li>
+                <li>
+                    <a href="/base-juridica">
+                        <ion-icon name="reader-outline"></ion-icon>
+                        Base Jurídica
                     </a>
                 </li>
                 <li>
