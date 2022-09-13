@@ -15,11 +15,25 @@ class Form extends Component
 
     // @attributes
     public $numero;
-    public $isRevisao;
+    public $revisao;
     public $status; // [ 0-Inativo | 1-Ativo]
     public $tipo;   // [ 1-Real    | 2-Alteração]
     public $ano;
     public $descricao;
+
+    // @vars
+    public $isRevisao;
+    public $optionsAno;
+    public $optionsTipo = [
+        '1' => 'Real',
+        '2' => 'Alteração'
+    ];
+
+    protected $rules = [
+        'numero'    => 'required|max:6',
+        'tipo'      => 'required',
+        'ano'       => 'required',
+    ];
 
     public function mount($action, BaseJuridica $baseJuridica)
     {
@@ -35,6 +49,12 @@ class Form extends Component
                 'icon' => 'page'
                 ]
             ]);
+
+        if(in_array($action, ['incluir', 'alterar'])){
+            // option Ano
+            $this->optionsAno[] = date('Y');
+            $this->optionsAno[] = date('Y', strtotime('last year'));
+        }
             
         $this->action  = $action;
         $this->revisao = "001"; // por padrão recebe '001'
@@ -55,8 +75,11 @@ class Form extends Component
                 $this->revisao = str_pad(intval($this->revisao)+1, 3, '0', STR_PAD_LEFT);
         }
     }
+    
+    public function submit(){
 
-    public function save(){
+        $this->validate();
+
         $typeFlashData = '';
         $messageFlashData = '';
         if ($this->action == 'incluir') {
@@ -70,6 +93,7 @@ class Form extends Component
             ];
             $bsService = new BaseJuridicaService();
             if(!$bsService->validate($data)){
+                redirect()->route('baseJuridicaShow');
                 return false;
             }
             $bsService->create($data);
@@ -98,6 +122,7 @@ class Form extends Component
             $messageFlashData = 'Revisão criada com Sucesso!';
             $typeFlashData = 'success';
         }
+
         Session::flash('messageFlashData', $messageFlashData);
         Session::flash('typeFlashData', $typeFlashData);
         redirect()->route('baseJuridicaShow');

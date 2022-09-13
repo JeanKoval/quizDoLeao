@@ -63,6 +63,16 @@
             </ul>
         </div>
         @endif
+
+        <!-- Flash Data -->
+        @if(Session::has('messageFlashData'))
+            @livewire('flash-data',[
+                    session('typeFlashData'), 
+                    session('messageFlashData')
+                ]
+            )
+        @endif
+        
         <!-- Content -->
         {{ $slot }}
     </main>

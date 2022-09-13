@@ -1,16 +1,8 @@
 <div>
     @livewire('button-back-form', ['/base-juridica'])
-    <!-- Flash Data -->
-    @if(Session::has('messageFlashData'))
-        @livewire('flash-data',[
-                session('typeFlashData'), 
-                session('messageFlashData')
-            ]
-        )
-    @endif
     <div class="card m-5 bg-base-100 shadow-xl">
         <div class="card-body">
-            <form wire:submit.prevent="save">
+            <form wire:submit.prevent="submit">
                 <div class="grid grid-cols-4">
 
                     <div class="form-control py-2">
@@ -32,13 +24,14 @@
                         </label>
                         <input 
                             @if (in_array($action, ['visualizar','revisao', 'inativar'])) { readonly } @endif
-                            required
                             wire:model="numero"
-                            type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+                            type="text"
                             placeholder="Número..." 
                             class="input input-bordered w-full max-w-xs
-                                @if (in_array($action, ['visualizar','revisao', 'inativar'])) { readonly } @endif" 
-                            maxlength="6"/>
+                                @if (in_array($action, ['visualizar','revisao', 'inativar'])) { readonly } @endif"/>
+                        @error('numero')
+                            <p class="text-red-500 text-xs italic">{{$message}}</p>
+                        @enderror
                     </div>
 
                     <div class="form-control py-2">
@@ -55,14 +48,16 @@
                             class="input input-bordered w-full max-w-xs readonly"/>
                         @else
                             <select
-                                required
                                 class="input input-bordered w-full max-w-xs"
                                 wire:model="ano">
-                                <option value="" selected>Selecione</option>
-                                @for($x = date('Y'); $x >= (intval(date('Y'))-1); $x--)
-                                <option value="{{$x}}">{{$x}}</option>
-                                @endfor
+                                <option value="" selected>Selecione...</option>
+                                @foreach($optionsAno as $option)
+                                    <option value="{{$option}}">{{$option}}</option>
+                                @endforeach
                             </select>
+                            @error('ano')
+                                <p class="text-red-500 text-xs italic">{{$message}}</p>
+                            @enderror
                         @endif
                     </div>
                     
@@ -80,13 +75,16 @@
                             class="input input-bordered w-full max-w-xs readonly"/>
                         @else
                             <select
-                                required
                                 class="input input-bordered w-full max-w-xs"
                                 wire:model="tipo">
-                                <option value="" selected>Selecione</option>
-                                <option value="1">Real</option>
-                                <option value="2">Alteração</option>
+                                <option value="" selected>Selecione...</option>
+                                @foreach($optionsTipo as $key => $option)
+                                    <option value="{{$key}}">{{$option}}</option>
+                                @endforeach
                             </select>
+                            @error('tipo')
+                                <p class="text-red-500 text-xs italic">{{$message}}</p>
+                            @enderror
                         @endif
                     </div>
                 </div>
