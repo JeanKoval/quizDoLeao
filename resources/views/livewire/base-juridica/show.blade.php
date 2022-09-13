@@ -1,13 +1,4 @@
 <div>
-    <!-- Flash Data -->
-    @if(Session::has('messageFlashData'))
-        @livewire('flash-data',[
-                    session('typeFlashData'), 
-                    session('messageFlashData')
-                ]
-            )
-    @endif
-
     <div class="card m-5 bg-base-100 shadow-xl">
         <div class="card-body">
             <div>

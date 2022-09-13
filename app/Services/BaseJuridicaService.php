@@ -54,8 +54,8 @@ class BaseJuridicaService{
             // verifica se tem base juridica Real ativa para aquele ano cadastrada
             $basesJuridicas = DB::table('base_juridicas')->where([
                 ['ano', '=', $data['ano']],
-                ['status', '=', '1'],
-                ['tipo', '=', '1']
+                ['status', '=', '1'], // 1 = Ativo
+                ['tipo', '=', '1']    // 1 - Real
             ])->get();
             if(!count($basesJuridicas)){
                 Session::flash('messageFlashData', 'Nenhuma Base real ativa cadastrada para este Ano!');
@@ -66,11 +66,11 @@ class BaseJuridicaService{
             // verifica se não está cadastrando uma alteração com o mesmo numero
             $basesJuridicas = DB::table('base_juridicas')->where([
                     ['ano', '=', $data['ano']],
-                    ['status', '=', '1'],
-                    ['tipo', '=', '2'],
+                    ['status', '=', '1'], // 1 = Ativo
+                    ['tipo', '=', '2'],   // 2 - Alteração
                     ['numero', '=', $data['numero']]
                 ])->get();
-            if(!count($basesJuridicas)){
+            if(count($basesJuridicas)){
                 Session::flash('messageFlashData', 'Já existe uma Base de alteração ativa cadastrada para este Ano e Número!');
                 Session::flash('typeFlashData', 'warning');
                 return false;
