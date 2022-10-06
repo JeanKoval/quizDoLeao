@@ -32,3 +32,6 @@ Route::get('/pergunta/{action}/{pergunta?}', \App\Http\Livewire\Pergunta\Form::c
 
 Route::get('/base-juridica', \App\Http\Livewire\BaseJuridica\Show::class)->name('baseJuridicaShow');
 Route::get('/base-juridica/{action}/{baseJuridica?}', \App\Http\Livewire\BaseJuridica\Form::class)->name('baseJuridicaForm');
+
+Route::get('/capitulo', \App\Http\Livewire\Capitulo\Show::class)->name('capituloShow');
+Route::get('/capitulo/{action}/{capitulo?}', \App\Http\Livewire\Capitulo\Form::class)->name('capituloForm');
