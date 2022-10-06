@@ -36,6 +36,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/capitulo">
+                        <ion-icon name="reader-outline"></ion-icon>
+                        Capitulo
+                    </a>
+                </li>
+                <li>
                     <a href="/user">
                         <ion-icon name="people-outline"></ion-icon>
                         Usuários
