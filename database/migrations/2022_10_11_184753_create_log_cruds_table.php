@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('perguntas', function (Blueprint $table) {
+        Schema::create('log_cruds', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 6);
-            $table->string('revisao', 3);
-            $table->string('ordem', 2);
-            $table->string('descricao', 100);
-            $table->integer('status');
-            // $table->string('mensagem_tooltip');
-            $table->integer('tipo_relacao');
-            $table->foreignId('relacao_id');
+            $table->string('rotina');
+            $table->string('acao');
+            $table->bigInteger('registro_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('perguntas');
+        Schema::dropIfExists('log_cruds');
     }
 };
