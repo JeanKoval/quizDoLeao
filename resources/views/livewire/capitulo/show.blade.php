@@ -36,9 +36,9 @@
                             <td>
                                 <div>
                                     @if ($capitulo->status==1)
-                                        @livewire('buttons-crud', [ $capitulo->id, '/capitulo', ['visualizar','revisao', 'inativar']])
+                                        @livewire('buttons-crud', [ $capitulo->id, '/capitulo', ['visualizar', 'inativar']])
                                     @else    
-                                        @livewire('buttons-crud', [ $capitulo->id, '/capitulo', ['visualizar','revisao']])
+                                        @livewire('buttons-crud', [ $capitulo->id, '/capitulo', ['visualizar']])
                                     @endif
                                 </div>
                             </td>
