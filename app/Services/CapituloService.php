@@ -3,9 +3,11 @@
 namespace App\Services;
 
 use App\Models\Capitulo;
+use App\Enums\OptionCrudEnum;
 
 class CapituloService{
 
+    public $id;
     private $camposObrigatorios = [
         'status' => 'Status',
         'numeroRomano' => 'Numéro',
@@ -19,6 +21,8 @@ class CapituloService{
             $capitulo->$key = $value;
         }
         $capitulo->save();
+        $this->id = $capitulo->id;
+        $this->saveLog(OptionCrudEnum::Incluir);
     }
 
     public function update(Capitulo &$capitulo, Array $data){
@@ -27,15 +31,21 @@ class CapituloService{
             $capitulo->$key = $value;
         }
         $capitulo->update();
+        $this->id = $capitulo->id;
+        $this->saveLog(OptionCrudEnum::Editar);
     }
 
     public function delete(Capitulo &$capitulo){
+        $this->id = $capitulo->id;
         $capitulo->delete();
+        $this->saveLog(OptionCrudEnum::Excluir);
     }
 
     public function inativar(Capitulo &$capitulo){
         $capitulo->status = 0;
         $capitulo->save();
+        $this->id = $capitulo->id;
+        $this->saveLog(OptionCrudEnum::Inativar);
     }
 
     private function verificaCamposObrigatorios(Array $data){
@@ -44,6 +54,11 @@ class CapituloService{
                 throw new \App\Exceptions\CampoObrigatorioException("O campo $campo é de preenchimento obrigatório!");
             }
         }
+    }
+
+    // salva log da execução
+    public function saveLog($action){
+        LogCrudService::create('capitulo', $this->id, $action);
     }
     
 }

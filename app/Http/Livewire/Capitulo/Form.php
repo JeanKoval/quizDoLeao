@@ -4,7 +4,9 @@ namespace App\Http\Livewire\Capitulo;
 
 use App\Models\BaseJuridica;
 use App\Models\Capitulo;
+use App\Models\LogCrud;
 use App\Services\CapituloService;
+use App\Services\LogCrudService;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
@@ -132,11 +134,12 @@ class Form extends Component
 
     public function submit()
     {
-
         $this->validate();
 
         $typeFlashData = '';
         $messageFlashData = '';
+        $capituloService = new CapituloService();
+
         if ($this->action == 'incluir') {
             $this->status = 1;
 
@@ -147,18 +150,17 @@ class Form extends Component
                 'descricao'         => $this->descricao
             ];
 
-            $capituloService = new CapituloService();
             $capituloService->create($data);
 
             $messageFlashData = 'Capítulo incluído com Sucesso!';
             $typeFlashData = 'success';
         } elseif ($this->action == 'excluir') {
-            (new CapituloService())->delete($this->capitulo);
+            $capituloService->delete($this->capitulo);
 
             $messageFlashData = 'Capítulo excluído com Sucesso!';
             $typeFlashData = 'success';
         } elseif ($this->action == 'inativar') {
-            (new CapituloService())->inativar($this->capitulo);
+            $capituloService->inativar($this->capitulo);
 
             $messageFlashData = 'Capítulo inativado com Sucesso!';
             $typeFlashData = 'success';
