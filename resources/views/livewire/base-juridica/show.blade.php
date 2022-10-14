@@ -2,7 +2,7 @@
     <div class="card m-5 bg-base-100 shadow-xl">
         <div class="card-body">
             <div>
-                <a href="/base-juridica/incluir">
+                <a href="/{{ \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value }}/incluir">
                     <button class="btn btn-outline btn-success">
                         <ion-icon name="add-outline"></ion-icon>
                         Incluir
