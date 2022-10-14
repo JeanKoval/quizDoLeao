@@ -35,3 +35,6 @@ Route::get('/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value . '/{actio
 
 Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value, \App\Http\Livewire\Capitulo\Show::class)->name('capituloShow');
 Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value . '/{action}/{capitulo?}', \App\Http\Livewire\Capitulo\Form::class)->name('capituloForm');
+
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Artigo->value, \App\Http\Livewire\Artigo\Show::class)->name('artigoShow');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Artigo->value . '/{action}/{artigo?}', \App\Http\Livewire\Artigo\Form::class)->name('artigoForm');
