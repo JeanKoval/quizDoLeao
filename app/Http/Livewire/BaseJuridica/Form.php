@@ -39,7 +39,7 @@ class Form extends Component
     {
         Session::put('breadcrumbs', [
             [
-                'href' => '/base-juridica',
+                'href' => '/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value,
                 'text' => 'Base Jurídica',
                 'icon' => 'pasta'
             ],

@@ -23,7 +23,7 @@ class Form extends Component
     {
         Session::put('breadcrumbs', [
             [
-                'href' => '/pergunta',
+                'href' => '/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value,
                 'text' => 'Pergunta',
                 'icon' => 'pasta'
             ],

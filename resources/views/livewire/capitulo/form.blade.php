@@ -1,5 +1,5 @@
 <div>
-@livewire('button-back-form', ['/capitulo'])
+@livewire('button-back-form', ['/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value])
     <div class="card m-5 bg-base-100 shadow-xl">
         <div class="card-body">
             <form wire:submit.prevent="submit">

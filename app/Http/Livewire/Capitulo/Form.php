@@ -88,7 +88,7 @@ class Form extends Component
     {
         Session::put('breadcrumbs', [
             [
-                'href' => '/capitulo',
+                'href' => '/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value,
                 'text' => 'Capitulo',
                 'icon' => 'pasta'
             ],

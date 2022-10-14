@@ -1,5 +1,5 @@
 <div>
-    @livewire('button-back-form', ['/base-juridica'])
+    @livewire('button-back-form', ['/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value])
     <div class="card m-5 bg-base-100 shadow-xl">
         <div class="card-body">
             <form wire:submit.prevent="submit">
