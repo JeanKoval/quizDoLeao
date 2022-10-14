@@ -42,6 +42,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/{{ \App\Enums\RotinasAplicacaoEnum::Artigo->value }}">
+                        <ion-icon name="reader-outline"></ion-icon>
+                        Artigo
+                    </a>
+                </li>
+                <li>
                     <a href="/user">
                         <ion-icon name="people-outline"></ion-icon>
                         Usuários
