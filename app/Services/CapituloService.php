@@ -58,7 +58,7 @@ class CapituloService{
 
     // salva log da execução
     public function saveLog($action){
-        LogCrudService::create('capitulo', $this->id, $action);
+        LogCrudService::create(\App\Enums\RotinasAplicacaoEnum::Capitulo->value, $this->id, $action);
     }
     
 }

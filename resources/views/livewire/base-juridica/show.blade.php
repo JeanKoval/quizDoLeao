@@ -46,9 +46,9 @@
                             <td>
                                 <div>
                                     @if ($baseJuridica->status==1)
-                                        @livewire('buttons-crud', [ $baseJuridica->id, '/base-juridica', ['visualizar','revisao', 'inativar']])
+                                        @livewire('buttons-crud', [ $baseJuridica->id, '/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value, ['visualizar','revisao', 'inativar']])
                                     @else    
-                                        @livewire('buttons-crud', [ $baseJuridica->id, '/base-juridica', ['visualizar','revisao']])
+                                        @livewire('buttons-crud', [ $baseJuridica->id, '/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value, ['visualizar','revisao']])
                                     @endif
                                 </div>
                             </td>

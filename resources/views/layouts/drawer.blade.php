@@ -24,19 +24,19 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/pergunta">
+                    <a href="/{{ \App\Enums\RotinasAplicacaoEnum::Pergunta->value }}">
                         <ion-icon name="help-circle-outline"></ion-icon>
                         Perguntas
                     </a>
                 </li>
                 <li>
-                    <a href="/base-juridica">
+                    <a href="/{{ \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value }}">
                         <ion-icon name="reader-outline"></ion-icon>
                         Base Jurídica
                     </a>
                 </li>
                 <li>
-                    <a href="/capitulo">
+                    <a href="/{{ \App\Enums\RotinasAplicacaoEnum::Capitulo->value }}">
                         <ion-icon name="reader-outline"></ion-icon>
                         Capitulo
                     </a>
