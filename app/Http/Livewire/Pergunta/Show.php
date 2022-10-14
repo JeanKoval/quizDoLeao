@@ -14,7 +14,7 @@ class Show extends Component
     public function mount(){
         Session::put('breadcrumbs', [
             [
-                'href' => '/pergunta',
+                'href' => '/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value,
                 'text' => 'Pergunta',
                 'icon' => 'pasta'
             ]

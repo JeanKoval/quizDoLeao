@@ -42,7 +42,7 @@
                             <td> {{ $pergunta->descricao }} </td>
                             <td> {{ $pergunta->mensagem_tooltip }} </td>
                             <td>
-                                @livewire('buttons-crud', [ $pergunta->id, '/pergunta' ])   
+                                @livewire('buttons-crud', [ $pergunta->id, '/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value ])   
                             </td>
                         </tr>
                         @endforeach

@@ -14,7 +14,7 @@ class Show extends Component
     public function mount(){
         Session::put('breadcrumbs', [
             [
-                'href' => '/base-juridica',
+                'href' => '/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value,
                 'text' => 'Base Jurídica',
                 'icon' => 'pasta'
             ]

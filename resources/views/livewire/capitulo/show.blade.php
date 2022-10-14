@@ -36,9 +36,9 @@
                             <td>
                                 <div>
                                     @if ($capitulo->status==1)
-                                        @livewire('buttons-crud', [ $capitulo->id, '/capitulo', ['visualizar', 'inativar']])
+                                        @livewire('buttons-crud', [ $capitulo->id, '/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value, ['visualizar', 'inativar']])
                                     @else    
-                                        @livewire('buttons-crud', [ $capitulo->id, '/capitulo', ['visualizar']])
+                                        @livewire('buttons-crud', [ $capitulo->id, '/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value, ['visualizar']])
                                     @endif
                                 </div>
                             </td>

@@ -15,7 +15,17 @@ return new class extends Migration
     {
         Schema::create('log_cruds', function (Blueprint $table) {
             $table->id();
-            $table->string('rotina');
+            $table->enum('rotina',[
+                    'pergunta',
+                    'base-juridica',
+                    'capitulo',
+                    'artigo',
+                    'inciso',
+                    'paragrafo',
+                    'alinea',
+                    'lead'
+                ]
+            );
             $table->enum('acao', [
                     'incluir',
                     'visualizar',

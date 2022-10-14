@@ -13,7 +13,7 @@ class Show extends Component
     public function mount(){
         \Illuminate\Support\Facades\Session::put('breadcrumbs', [
             [
-                'href' => '/capitulo',
+                'href' => '/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value,
                 'text' => 'Capitulo',
                 'icon' => 'pasta'
             ]

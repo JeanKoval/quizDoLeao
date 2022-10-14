@@ -27,11 +27,11 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/pergunta', \App\Http\Livewire\Pergunta\Show::class)->name('perguntaShow');
-Route::get('/pergunta/{action}/{pergunta?}', \App\Http\Livewire\Pergunta\Form::class)->name('perguntaForm');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value, \App\Http\Livewire\Pergunta\Show::class)->name('perguntaShow');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value . '/{action}/{pergunta?}', \App\Http\Livewire\Pergunta\Form::class)->name('perguntaForm');
 
-Route::get('/base-juridica', \App\Http\Livewire\BaseJuridica\Show::class)->name('baseJuridicaShow');
-Route::get('/base-juridica/{action}/{baseJuridica?}', \App\Http\Livewire\BaseJuridica\Form::class)->name('baseJuridicaForm');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value, \App\Http\Livewire\BaseJuridica\Show::class)->name('baseJuridicaShow');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value . '/{action}/{baseJuridica?}', \App\Http\Livewire\BaseJuridica\Form::class)->name('baseJuridicaForm');
 
-Route::get('/capitulo', \App\Http\Livewire\Capitulo\Show::class)->name('capituloShow');
-Route::get('/capitulo/{action}/{capitulo?}', \App\Http\Livewire\Capitulo\Form::class)->name('capituloForm');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value, \App\Http\Livewire\Capitulo\Show::class)->name('capituloShow');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value . '/{action}/{capitulo?}', \App\Http\Livewire\Capitulo\Form::class)->name('capituloForm');
