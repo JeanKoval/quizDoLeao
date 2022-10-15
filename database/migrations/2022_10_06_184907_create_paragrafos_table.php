@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('paragrafos', function (Blueprint $table) {
             $table->id();
             $table->integer('numero');
-            $table->text('descricao');
+            $table->text('descricao')->nullable();
             $table->integer('status');
             $table->unsignedBigInteger('artigo_id');
             $table->foreign('artigo_id')->references('id')->on('artigos');
