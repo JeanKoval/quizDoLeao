@@ -156,17 +156,18 @@ class Form extends Component
         $this->action = $action;
         if ($this->action != 'incluir' && !is_null($paragrafo->id)) {
             $this->paragrafo    = $paragrafo;
+            $this->paragrafo->artigo = Artigo::findOrFail($this->paragrafo->artigo_id);
+            $this->paragrafo->capitulo = Capitulo::findOrFail($this->paragrafo->artigo->capitulo_id);
             $this->numero       = $this->paragrafo->numero . "°";
             $this->status       = $this->paragrafo->status;
             $this->descricao    = $this->paragrafo->descricao;
-            $this->artigo       = $this->paragrafo->artigo_id;
+            $this->artigo       = $this->paragrafo->artigo->numero . "°";
+            $this->capitulo     = $this->paragrafo->capitulo->numeroRomano;
+            $this->baseJuridica = $this->paragrafo->capitulo->getBaseJuridicaAndAno();
         }
-        if (in_array($this->action, ['incluir'])) {
+
+        if ($this->action == \App\Enums\OptionCrudEnum::Incluir->value) {
             $this->montaOptionsBaseJuridica();
-        }else{
-            $this->artigo = Artigo::findOrFail($this->paragrafo->artigo_id);
-            $this->capitulo = Capitulo::findOrFail($this->artigo->artigo_id);
-            $this->baseJuridica = $this->capitulo->getBaseJuridicaAndAno();
         }
     }
 
