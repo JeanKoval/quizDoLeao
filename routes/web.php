@@ -27,17 +27,17 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value, \App\Http\Livewire\Pergunta\Show::class)->name('perguntaShow');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value . '/{action}/{pergunta?}', \App\Http\Livewire\Pergunta\Form::class)->name('perguntaForm');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value, \App\Http\Livewire\Pergunta\Show::class)->name('perguntaShow')->middleware('auth');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value . '/{action}/{pergunta?}', \App\Http\Livewire\Pergunta\Form::class)->name('perguntaForm')->middleware('auth');
 
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value, \App\Http\Livewire\BaseJuridica\Show::class)->name('baseJuridicaShow');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value . '/{action}/{baseJuridica?}', \App\Http\Livewire\BaseJuridica\Form::class)->name('baseJuridicaForm');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value, \App\Http\Livewire\BaseJuridica\Show::class)->name('baseJuridicaShow')->middleware('auth');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value . '/{action}/{baseJuridica?}', \App\Http\Livewire\BaseJuridica\Form::class)->name('baseJuridicaForm')->middleware('auth');
 
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value, \App\Http\Livewire\Capitulo\Show::class)->name('capituloShow');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value . '/{action}/{capitulo?}', \App\Http\Livewire\Capitulo\Form::class)->name('capituloForm');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value, \App\Http\Livewire\Capitulo\Show::class)->name('capituloShow')->middleware('auth');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value . '/{action}/{capitulo?}', \App\Http\Livewire\Capitulo\Form::class)->name('capituloForm')->middleware('auth');
 
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Artigo->value, \App\Http\Livewire\Artigo\Show::class)->name('artigoShow');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Artigo->value . '/{action}/{artigo?}', \App\Http\Livewire\Artigo\Form::class)->name('artigoForm');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Artigo->value, \App\Http\Livewire\Artigo\Show::class)->name('artigoShow')->middleware('auth');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Artigo->value . '/{action}/{artigo?}', \App\Http\Livewire\Artigo\Form::class)->name('artigoForm')->middleware('auth');
 
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Paragrafo->value, \App\Http\Livewire\Paragrafo\Show::class)->name('paragrafoShow');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Paragrafo->value . '/{action}/{paragrafo?}', \App\Http\Livewire\Paragrafo\Form::class)->name('paragrafoForm');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Paragrafo->value, \App\Http\Livewire\Paragrafo\Show::class)->name('paragrafoShow')->middleware('auth');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Paragrafo->value . '/{action}/{paragrafo?}', \App\Http\Livewire\Paragrafo\Form::class)->name('paragrafoForm')->middleware('auth');
