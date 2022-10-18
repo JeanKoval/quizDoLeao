@@ -283,6 +283,5 @@ class Form extends Component
     public function render()
     {
         return view('livewire.inciso.form');
-        // return view('layouts.modal');
     }
 }
