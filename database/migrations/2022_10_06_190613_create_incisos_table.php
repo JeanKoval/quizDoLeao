@@ -18,7 +18,7 @@ return new class extends Migration
             $table->text('descricao');
             $table->string('numeroRomano', 10);
             $table->integer('status');
-            $table->integer('tipo_relacao');
+            $table->enum('tipo_relacao', ['artigo', 'paragrafo']);
             $table->foreignId('relacao_id');
             $table->timestamps();
         });

@@ -54,6 +54,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/{{ \App\Enums\RotinasAplicacaoEnum::Inciso->value }}">
+                        <ion-icon name="reader-outline"></ion-icon>
+                        Inciso
+                    </a>
+                </li>
+                <li>
                     <a href="/user">
                         <ion-icon name="people-outline"></ion-icon>
                         Usuários

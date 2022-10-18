@@ -41,3 +41,6 @@ Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Artigo->value . '/{action}/{ar
 
 Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Paragrafo->value, \App\Http\Livewire\Paragrafo\Show::class)->name('paragrafoShow')->middleware('auth');
 Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Paragrafo->value . '/{action}/{paragrafo?}', \App\Http\Livewire\Paragrafo\Form::class)->name('paragrafoForm')->middleware('auth');
+
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Inciso->value, \App\Http\Livewire\Inciso\Show::class)->name('incisoShow')->middleware('auth');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Inciso->value . '/{action}/{inciso?}', \App\Http\Livewire\Inciso\Form::class)->name('incisoForm')->middleware('auth');
