@@ -13,6 +13,9 @@ class Show extends Component
     //@params crud
     public $incisos = [];
     
+    //@filters
+    public $mostraInativos = false;
+    
     public function mount(){
 
         \Illuminate\Support\Facades\Session::put('breadcrumbs', [
@@ -23,7 +26,21 @@ class Show extends Component
             ]
         ]);
 
-        $this->incisos = \App\Models\Inciso::all();
+        $this->getIncisos();
+    }
+    
+    public function mostraInativos(){
+        $this->getIncisos();
+    }
+
+    public function getIncisos(){
+        
+        if(!$this->mostraInativos){
+            $this->incisos = \App\Models\Inciso::where([['status', '=', '1']])->get();
+        }else{
+            $this->incisos = \App\Models\Inciso::all();
+        }
+
 
         foreach($this->incisos as &$inciso){
 
