@@ -60,6 +60,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="/{{ \App\Enums\RotinasAplicacaoEnum::Alinea->value }}">
+                        <ion-icon name="reader-outline"></ion-icon>
+                        Alinea
+                    </a>
+                </li>
+                <li>
                     <a href="/user">
                         <ion-icon name="people-outline"></ion-icon>
                         Usuários
