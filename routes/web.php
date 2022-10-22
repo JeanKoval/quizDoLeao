@@ -44,3 +44,6 @@ Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Paragrafo->value . '/{action}/
 
 Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Inciso->value, \App\Http\Livewire\Inciso\Show::class)->name('incisoShow')->middleware('auth');
 Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Inciso->value . '/{action}/{inciso?}', \App\Http\Livewire\Inciso\Form::class)->name('incisoForm')->middleware('auth');
+
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Alinea->value, \App\Http\Livewire\Alinea\Show::class)->name('alineaShow')->middleware('auth');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Alinea->value . '/{action}/{alinea?}', \App\Http\Livewire\Alinea\Form::class)->name('alineaForm')->middleware('auth');
