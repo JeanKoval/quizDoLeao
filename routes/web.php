@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,3 +48,5 @@ Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Inciso->value . '/{action}/{in
 
 Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Alinea->value, \App\Http\Livewire\Alinea\Show::class)->name('alineaShow')->middleware('auth');
 Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Alinea->value . '/{action}/{alinea?}', \App\Http\Livewire\Alinea\Form::class)->name('alineaForm')->middleware('auth');
+
+Route::get('users/export/', [UserController::class, 'export']);
