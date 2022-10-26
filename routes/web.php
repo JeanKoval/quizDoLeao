@@ -48,3 +48,7 @@ Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Inciso->value . '/{action}/{in
 
 Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Alinea->value, \App\Http\Livewire\Alinea\Show::class)->name('alineaShow')->middleware('auth');
 Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Alinea->value . '/{action}/{alinea?}', \App\Http\Livewire\Alinea\Form::class)->name('alineaForm')->middleware('auth');
+
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Lead->value, \App\Http\Livewire\Lead\Show::class)->name('leadShow')->middleware('auth');
+Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Lead->value . '/{action}/{lead?}', \App\Http\Livewire\Lead\Form::class)->name('leadForm')->middleware('auth');
+Route::get('/leads/export', [\App\Http\Controllers\LeadController::class, 'export'])->name('leadExport')->middleware('auth');
