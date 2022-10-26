@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
-            $table->string('nome', 50);
-            $table->float('renda_tributavel');
-            $table->float('renda__nao_tributavel',10);
-            $table->string('email', 100);
-            $table->string('telefone', 11);
-            $table->string('ano_nascimento', 4);
-            $table->string('profissao', 50);
-            $table->string('cidade', 30);
-            $table->string('estado', 2);
+            $table->string('nome', 50)->nullable();
+            $table->float('renda_tributavel')->nullable();
+            $table->float('renda_nao_tributavel',10)->nullable();
+            $table->string('email', 100)->nullable();
+            $table->string('telefone', 11)->nullable();
+            $table->string('ano_nascimento', 4)->nullable();
+            $table->string('profissao', 50)->nullable();
+            $table->string('cidade', 30)->nullable();
+            $table->string('estado', 2)->nullable();
             $table->timestamps();
         });
     }
