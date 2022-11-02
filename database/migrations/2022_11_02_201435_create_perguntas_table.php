@@ -15,13 +15,17 @@ return new class extends Migration
     {
         Schema::create('perguntas', function (Blueprint $table) {
             $table->id();
-            $table->string('codigo', 6);
+            // $table->string('codigo', 6);
             $table->string('revisao', 3);
             $table->string('ordem', 2);
             $table->string('descricao', 100);
             $table->integer('status');
             // $table->string('mensagem_tooltip');
-            $table->integer('tipo_relacao');
+            $table->enum('tipo_relacao', [
+                'alinea',
+                'paragrafo',
+                'inciso'
+            ]);
             $table->foreignId('relacao_id');
             $table->timestamps();
         });
