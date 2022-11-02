@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,41 +13,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::middleware('auth')->group(function (){
+
+    Route::get('/', \App\Http\Livewire\Home::class)->name('homePage');
+
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value, \App\Http\Livewire\Pergunta\Show::class)->name('perguntaShow');
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value . '/{action}/{pergunta?}', \App\Http\Livewire\Pergunta\Form::class)->name('perguntaForm');
+
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value, \App\Http\Livewire\BaseJuridica\Show::class)->name('baseJuridicaShow');
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value . '/{action}/{baseJuridica?}', \App\Http\Livewire\BaseJuridica\Form::class)->name('baseJuridicaForm');
+
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value, \App\Http\Livewire\Capitulo\Show::class)->name('capituloShow');
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value . '/{action}/{capitulo?}', \App\Http\Livewire\Capitulo\Form::class)->name('capituloForm');
+
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Artigo->value, \App\Http\Livewire\Artigo\Show::class)->name('artigoShow');
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Artigo->value . '/{action}/{artigo?}', \App\Http\Livewire\Artigo\Form::class)->name('artigoForm');
+
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Paragrafo->value, \App\Http\Livewire\Paragrafo\Show::class)->name('paragrafoShow');
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Paragrafo->value . '/{action}/{paragrafo?}', \App\Http\Livewire\Paragrafo\Form::class)->name('paragrafoForm');
+
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Inciso->value, \App\Http\Livewire\Inciso\Show::class)->name('incisoShow');
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Inciso->value . '/{action}/{inciso?}', \App\Http\Livewire\Inciso\Form::class)->name('incisoForm');
+
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Alinea->value, \App\Http\Livewire\Alinea\Show::class)->name('alineaShow');
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Alinea->value . '/{action}/{alinea?}', \App\Http\Livewire\Alinea\Form::class)->name('alineaForm');
+
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Lead->value, \App\Http\Livewire\Lead\Show::class)->name('leadShow');
+    Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Lead->value . '/{action}/{lead?}', \App\Http\Livewire\Lead\Form::class)->name('leadForm');
+    Route::get('/leads/export', [\App\Http\Controllers\LeadController::class, 'export'])->name('leadExport');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
-
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value, \App\Http\Livewire\Pergunta\Show::class)->name('perguntaShow')->middleware('auth');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value . '/{action}/{pergunta?}', \App\Http\Livewire\Pergunta\Form::class)->name('perguntaForm')->middleware('auth');
-
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value, \App\Http\Livewire\BaseJuridica\Show::class)->name('baseJuridicaShow')->middleware('auth');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::BaseJuridica->value . '/{action}/{baseJuridica?}', \App\Http\Livewire\BaseJuridica\Form::class)->name('baseJuridicaForm')->middleware('auth');
-
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value, \App\Http\Livewire\Capitulo\Show::class)->name('capituloShow')->middleware('auth');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Capitulo->value . '/{action}/{capitulo?}', \App\Http\Livewire\Capitulo\Form::class)->name('capituloForm')->middleware('auth');
-
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Artigo->value, \App\Http\Livewire\Artigo\Show::class)->name('artigoShow')->middleware('auth');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Artigo->value . '/{action}/{artigo?}', \App\Http\Livewire\Artigo\Form::class)->name('artigoForm')->middleware('auth');
-
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Paragrafo->value, \App\Http\Livewire\Paragrafo\Show::class)->name('paragrafoShow')->middleware('auth');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Paragrafo->value . '/{action}/{paragrafo?}', \App\Http\Livewire\Paragrafo\Form::class)->name('paragrafoForm')->middleware('auth');
-
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Inciso->value, \App\Http\Livewire\Inciso\Show::class)->name('incisoShow')->middleware('auth');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Inciso->value . '/{action}/{inciso?}', \App\Http\Livewire\Inciso\Form::class)->name('incisoForm')->middleware('auth');
-
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Alinea->value, \App\Http\Livewire\Alinea\Show::class)->name('alineaShow')->middleware('auth');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Alinea->value . '/{action}/{alinea?}', \App\Http\Livewire\Alinea\Form::class)->name('alineaForm')->middleware('auth');
-
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Lead->value, \App\Http\Livewire\Lead\Show::class)->name('leadShow')->middleware('auth');
-Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Lead->value . '/{action}/{lead?}', \App\Http\Livewire\Lead\Form::class)->name('leadForm')->middleware('auth');
-Route::get('/leads/export', [\App\Http\Controllers\LeadController::class, 'export'])->name('leadExport')->middleware('auth');
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified'
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
