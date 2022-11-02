@@ -55,6 +55,11 @@ abstract class CrudService{
         $this->saveLog(OptionCrudEnum::Inativar);
     }
 
+    public function revisao(Model &$model, Array $data){
+        $this->inativar($model);
+        $this->create($data);
+    }
+
     private function verificaCamposObrigatorios(Array $data){
         foreach($this->camposObrigatorios as $key => $campo){
             if(!array_key_exists($key, $data) || empty(trim($data[$key]))){

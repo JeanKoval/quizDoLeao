@@ -10,7 +10,7 @@ class ButtonsCrud extends Component
     public $actions;
     public $route;
 
-    public function mount($idData = null, $route = null, $actions = ['visualizar', 'alterar', 'excluir']){
+    public function mount($idData = null, $route = null, $actions = ['visualizar', 'revisao', 'inativar']){
         $this->idData  = $idData;
         $this->route   = $route;
         $this->actions = $actions;

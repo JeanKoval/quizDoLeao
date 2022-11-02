@@ -29,23 +29,53 @@
                     <!-- head -->
                     <thead>
                         <tr>
-                            <th>Código</th>
+                            <th>Status</th>
+                            <th>Revisão</th>
+                            <th>Ordem</th>
                             <th>Descrição</th>
-                            <th>Mensagem Referencial</th>
+                            <th>Tipo Relação</th>
+                            <th>Base Juridica / Ano</th>
+                            <th>Capitulo</th>
+                            <th>Artigo</th>
+                            <th>Paragrafo</th>
+                            <th>Inciso</th>
+                            <th>Alinea</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($perguntas as $pergunta)
+                        @forelse($perguntas as $pergunta)
                         <tr>
-                            <td> {{ $pergunta->codigo }} </td>
-                            <td> {{ $pergunta->descricao }} </td>
-                            <td> {{ $pergunta->mensagem_tooltip }} </td>
                             <td>
-                                @livewire('buttons-crud', [ $pergunta->id, '/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value ])   
+                                @if($pergunta->status==0)
+                                <div class="badge badge-error">Inativo</div>
+                                @else
+                                <div class="badge badge-success">Ativo</div>
+                                @endif
+                            </td>
+                            <td> {{ $pergunta->revisao }} </td>
+                            <td> {{ $pergunta->ordem }} </td>
+                            <td> {{ $pergunta->descricao }} </td>
+                            <td> {{ $pergunta->tipoRelacao }} </td>
+                            <td> {{ $pergunta->baseJuridica }} </td>
+                            <td> {{ $pergunta->capitulo }} </td>
+                            <td> {{ $pergunta->artigo }} </td>
+                            <td> {{ $pergunta->paragrafo ?? ''}} </td>
+                            <td> {{ $pergunta->inciso ?? ''}} </td>
+                            <td> {{ $pergunta->alinea ?? ''}} </td>
+                            <td>
+                                @if ($pergunta->status==1)
+                                    @livewire('buttons-crud', [ $pergunta->id, '/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value ])
+                                @else
+                                    @livewire('buttons-crud', [ $pergunta->id, '/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value, ['visualizar']])
+                                @endif
                             </td>
                         </tr>
-                        @endforeach
+                        @empty
+                        <tr>
+                            <th colspan="12" class="text-center">Não encontrado Registros...</th>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
