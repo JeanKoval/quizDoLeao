@@ -12,7 +12,7 @@
                 <div class="form-control">
                     <label class="cursor-pointer label">
                         <span class="label-text pr-2">Mostrar inativos? </span>
-                        <input type="checkbox" checked="checked" class="checkbox checkbox-accent" wire:click="mostraInativos" wire:model="mostraInativos"/>
+                        <input type="checkbox" checked="checked" class="checkbox checkbox-accent" wire:click="getAlineas" wire:model="mostraInativos"/>
                   </label>
                 </div>
             </div>
