@@ -11,30 +11,30 @@ class Alinea extends Model
 {
     use HasFactory;
 
-    public function getAlineas($where = []){
+    public static function getAlineas($where = []){
         $alineas = Alinea::where($where)->get();
         
         foreach($alineas as &$alinea){
-            $tipoRelacao = OptionAlineaEnum::from($alinea->tipo_relacao);
-            if($tipoRelacao == OptionAlineaEnum::Artigo){
+            $alinea->tipoRelacao = OptionAlineaEnum::from($alinea->tipo_relacao);
+            if($alinea->tipoRelacao == OptionAlineaEnum::Artigo){
 
                 $alinea->artigo = Artigo::findOrFail($alinea->relacao_id);
 
-            }else if($tipoRelacao == OptionAlineaEnum::Paragrafo){
+            }else if($alinea->tipoRelacao == OptionAlineaEnum::Paragrafo){
 
                 $alinea->paragrafo = Paragrafo::findOrFail($alinea->relacao_id);
                 $alinea->artigo = Artigo::findOrFail($alinea->paragrafo->artigo_id);
 
-            }else if($tipoRelacao == OptionAlineaEnum::Inciso){
+            }else if($alinea->tipoRelacao == OptionAlineaEnum::Inciso){
 
                 $alinea->inciso = Inciso::findOrFail($alinea->relacao_id);
-                $tipoRelacaoInciso = OptionIncisoEnum::from($alinea->inciso->tipo_relacao);
+                $alinea->tipoRelacaoInciso = OptionIncisoEnum::from($alinea->inciso->tipo_relacao);
 
-                if($tipoRelacaoInciso == OptionIncisoEnum::Artigo){
+                if($alinea->tipoRelacaoInciso == OptionIncisoEnum::Artigo){
                     
                     $alinea->artigo = Artigo::findOrFail($alinea->inciso->relacao_id);
 
-                }else if($tipoRelacaoInciso == OptionIncisoEnum::Paragrafo){
+                }else if($alinea->tipoRelacaoInciso == OptionIncisoEnum::Paragrafo){
 
                     $alinea->paragrafo = Paragrafo::findOrFail($alinea->inciso->relacao_id);
                     $alinea->artigo = Artigo::findOrFail($alinea->paragrafo->artigo_id);
