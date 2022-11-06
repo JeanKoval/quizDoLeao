@@ -67,7 +67,7 @@
 
             <!-- Flash Data -->
             @if(Session::has('messageFlashData'))
-                @livewire('flash-data',[
+                @livewire('admin.flash-data',[
                         session('typeFlashData'), 
                         session('messageFlashData')
                     ]
