@@ -125,8 +125,9 @@ class Form extends Component
             if($this->tipoRelacao == OptionIncisoEnum::Paragrafo){
                 $this->paragrafo = Paragrafo::findOrFail($this->inciso->relacao_id);
                 $this->artigo = Artigo::findOrFail($this->paragrafo->artigo_id);
+                $this->paragrafo = $this->paragrafo->numero . "°";
             }else{
-                $this->artigo = Artigo::findOrFail($this->relacao_id);
+                $this->artigo = Artigo::findOrFail($this->inciso->relacao_id);
             }
 
             $this->capitulo = Capitulo::findOrFail($this->artigo->capitulo_id);
@@ -135,7 +136,6 @@ class Form extends Component
             $this->tipoRelacao = $this->tipoRelacao->name;
             $this->capitulo = $this->capitulo->numeroRomano;
             $this->artigo = $this->artigo->numero . "°";
-            $this->artigo = $this->paragrafo->numero . "°";
 
         }
 
@@ -218,7 +218,7 @@ class Form extends Component
         $this->paragrafo = '';
         $this->optionsParagrafo = [];
 
-        if(!empty($this->artigo)){
+        if(!empty($this->artigo) && $this->tipoRelacao == OptionIncisoEnum::Paragrafo->value){
             
             // Monta as opções do select de Paragrafo, amarrados ao capitulo escolhido
             $paragrafos = Paragrafo::where(
