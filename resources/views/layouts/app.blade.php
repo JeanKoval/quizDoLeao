@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name_admin', 'Quiz do Leão - Admin') }}</title>
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -26,7 +26,7 @@
 <body class="font-sans antialiased bg-gray-100">
 
     @if(Auth::user())
-        @extends('layouts.nav-bar')
+        @extends('livewire.admin.nav-bar')
 
         @section('content-nav-bar')
         <!-- Page Content -->

@@ -4204,3 +4204,6 @@ body[dir="rtl"] .checkbox:checked,
   background-color: #f1f1f1!important;
 }
 
+.nav_a:hover{
+  color: #136CF2;
+}

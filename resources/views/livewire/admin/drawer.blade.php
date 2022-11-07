@@ -18,7 +18,7 @@
             <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
                 <!-- Sidebar content here -->
                 <li>
-                    <a href="{{ route('homePage') }}">
+                    <a href="{{ route('homePageAdmin') }}">
                         <ion-icon name="home-outline"></ion-icon>
                         Home
                     </a>
