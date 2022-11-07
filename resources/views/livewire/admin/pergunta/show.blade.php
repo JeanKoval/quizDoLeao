@@ -55,8 +55,8 @@
                             </td>
                             <td> {{ $pergunta->revisao }} </td>
                             <td> {{ $pergunta->ordem }} </td>
-                            <td> {{ $pergunta->descricao }} </td>
-                            <td> {{ $pergunta->tipoRelacao }} </td>
+                            <td> {{ substr($pergunta->descricao, 0, 50) }}... </td>
+                            <td> {{ $pergunta->tipoRelacao->name }} </td>
                             <td> {{ $pergunta->baseJuridica }} </td>
                             <td> {{ $pergunta->capitulo }} </td>
                             <td> {{ $pergunta->artigo }} </td>

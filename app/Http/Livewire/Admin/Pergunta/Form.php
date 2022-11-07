@@ -182,9 +182,9 @@ class Form extends Component
                 ]
             );
             $messageFlashData = 'Pergunta revisada com Sucesso!';
-        } elseif ($this->action == 'excluir') {
-            $perguntaService->delete($this->pergunta);
-            $messageFlashData = 'Pergunta excluída com Sucesso!';
+        } elseif ($this->action == 'inativar') {
+            $perguntaService->inativar($this->pergunta);
+            $messageFlashData = 'Pergunta inativada com Sucesso!';
         }
         Session::flash('redirect-pergunta', $messageFlashData);
         redirect()->route('perguntaShow');

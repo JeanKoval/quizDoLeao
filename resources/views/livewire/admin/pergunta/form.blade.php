@@ -78,7 +78,13 @@
                             <span class="text-red-700" title="Campo obrigatório">*</span>
                         </span>
                     </label>
-                    <textarea wire:model="descricao" class="textarea textarea-bordered" placeholder="Descrição..."></textarea>
+                    <textarea 
+                        wire:model="descricao" 
+                        class="textarea textarea-bordered" 
+                        placeholder="Descrição..."
+                        @if(in_array($action, [\App\Enums\OptionCrudEnum::Incluir->value])) readonly @endif
+                        >
+                    </textarea>
                     @error('descricao')
                     <p class="text-red-500 text-xs italic">{{$message}}</p>
                     @enderror

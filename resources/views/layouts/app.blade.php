@@ -36,7 +36,7 @@
             <div class="pl-6 pt-5 pb-0 text-sm breadcrumbs">
                 <ul>
                     <li>
-                        <a href="/">
+                        <a href="{{ route('homePageAdmin') }}">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4 mr-2 stroke-current">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
                             </svg>
@@ -45,7 +45,7 @@
                     </li>
                     @foreach(Session::get('breadcrumbs') as $key)
                     <li>
-                        <a href="{{ $key['href'] }}">
+                        <a href="{{\App\Providers\RouteServiceProvider::HOME_ADMIN}}{{ $key['href'] }}">
                             @if($key['icon'] == 'pasta')
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-4 h-4 mr-2 stroke-current">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"></path>
