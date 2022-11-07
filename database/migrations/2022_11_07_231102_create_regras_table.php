@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('regras', function (Blueprint $table) {
             $table->id();
-            $table->string('descricao');
+            $table->text('descricao');
             $table->string('validacao');            
             $table->unsignedBigInteger('pergunta_id');
             $table->foreign('pergunta_id')->references('id')->on('perguntas');
