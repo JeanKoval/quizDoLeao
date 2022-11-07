@@ -15,13 +15,20 @@
 
     <div class="card m-5 bg-base-100 shadow-xl">
         <div class="card-body">
-            <div>
+            <div class="flex">
                 <a href="{{ route('perguntaForm', \App\Enums\OptionCrudEnum::Incluir->value) }}">
                     <button class="btn btn-outline btn-success">
                         <ion-icon name="add-outline"></ion-icon>
                         Incluir
                     </button>
                 </a>
+
+                <div class="form-control">
+                    <label class="cursor-pointer label">
+                        <span class="label-text pr-2">Mostrar inativos? </span>
+                        <input type="checkbox" checked="checked" class="checkbox checkbox-accent" wire:click="$emitSelf('render')" wire:model="mostraInativos"/>
+                  </label>
+                </div>
             </div>
 
             <div class="overflow-x-auto">

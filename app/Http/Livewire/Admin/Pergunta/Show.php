@@ -17,7 +17,10 @@ use Livewire\Component;
 
 class Show extends Component
 {
-   
+    public $mostraInativos = false;
+
+    protected $listeners = ['render'];
+
     public function mount(){
         Session::put('breadcrumbs', [
             [
@@ -30,7 +33,8 @@ class Show extends Component
     
     public function render()
     {
-        $perguntas = Pergunta::getPerguntasShow();
+
+        $perguntas = $this->mostraInativos ? Pergunta::getPerguntasShow() : Pergunta::getPerguntasShow([['status', '=', '1']]);
 
         return view('livewire.admin.pergunta.show', compact('perguntas'));
     }
