@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('perguntas', function (Blueprint $table) {
             $table->id();
-            // $table->string('codigo', 6);
             $table->string('revisao', 3);
             $table->string('ordem', 2);
-            $table->string('descricao', 100);
+            $table->text('descricao');
             $table->integer('status');
             // $table->string('mensagem_tooltip');
             $table->enum('tipo_relacao', [
