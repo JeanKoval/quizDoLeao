@@ -82,7 +82,7 @@
                         wire:model="descricao" 
                         class="textarea textarea-bordered" 
                         placeholder="Descrição..."
-                        @if(in_array($action, [\App\Enums\OptionCrudEnum::Incluir->value])) readonly @endif
+                        @if (in_array($action, ['visualizar', 'inativar'])) { readonly } @endif
                         >
                     </textarea>
                     @error('descricao')

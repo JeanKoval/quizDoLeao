@@ -19,9 +19,9 @@ class Pergunta extends Model
         return str_pad(str(++$ordem), 2, 0, STR_PAD_LEFT);
     }
 
-    public static function getPerguntasShow(): Generator
+    public static function getPerguntasShow($where = []): Generator
     {
-        foreach(Pergunta::all() as $pergunta){
+        foreach(Pergunta::where($where)->get() as $pergunta){
             $pergunta->tipoRelacao = OptionPerguntaEnum::from($pergunta->tipo_relacao);
 
             if($pergunta->tipoRelacao == OptionPerguntaEnum::Paragrafo){
