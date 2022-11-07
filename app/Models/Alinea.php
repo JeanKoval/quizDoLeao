@@ -16,11 +16,7 @@ class Alinea extends Model
         
         foreach($alineas as &$alinea){
             $alinea->tipoRelacao = OptionAlineaEnum::from($alinea->tipo_relacao);
-            if($alinea->tipoRelacao == OptionAlineaEnum::Artigo){
-
-                $alinea->artigo = Artigo::findOrFail($alinea->relacao_id);
-
-            }else if($alinea->tipoRelacao == OptionAlineaEnum::Paragrafo){
+            if($alinea->tipoRelacao == OptionAlineaEnum::Paragrafo){
 
                 $alinea->paragrafo = Paragrafo::findOrFail($alinea->relacao_id);
                 $alinea->artigo = Artigo::findOrFail($alinea->paragrafo->artigo_id);

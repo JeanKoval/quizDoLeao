@@ -36,8 +36,8 @@ class Show extends Component
         foreach($this->alineas as &$alinea) {
             $alinea->capitulo   = $alinea->capitulo->numeroRomano;
             $alinea->artigo     = $alinea->artigo->numero . "°";
-            $alinea->paragrafo  = !$alinea->paragrafo ?: $alinea->paragrafo->numero . '°';
-            $alinea->inciso     = !$alinea->inciso ?: $alinea->inciso->numeroRomano;
+            $alinea->paragrafo  = !$alinea->paragrafo ? '' : $alinea->paragrafo->numero . '°';
+            $alinea->inciso     = !$alinea->inciso ? '' : $alinea->inciso->numeroRomano;
         }
     }
 
