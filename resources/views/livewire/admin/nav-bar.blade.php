@@ -37,7 +37,7 @@
             </div>
         </div>
     </div>
-    @extends('layouts.drawer')
+    @extends('livewire.admin.drawer')
 
     @section('content-drawer')
 

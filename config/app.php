@@ -15,7 +15,8 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Quiz do Leão'),
+    'name_admin' => env('APP_NAME_ADMIN', 'Quiz do Leão - Admin'),
 
     /*
     |--------------------------------------------------------------------------

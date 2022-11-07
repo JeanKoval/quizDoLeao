@@ -17,7 +17,7 @@ Route::middleware('auth')
     ->prefix('admin')
     ->group(function (){
 
-        Route::get('/', \App\Http\Livewire\Admin\Home::class)->name('homePage');
+        Route::get('/', \App\Http\Livewire\Admin\Home::class)->name('homePageAdmin');
 
         Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value, \App\Http\Livewire\Admin\Pergunta\Show::class)->name('perguntaShow');
         Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Pergunta->value . '/{action}/{pergunta?}', \App\Http\Livewire\Admin\Pergunta\Form::class)->name('perguntaForm');
@@ -43,4 +43,20 @@ Route::middleware('auth')
         Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Lead->value, \App\Http\Livewire\Admin\Lead\Show::class)->name('leadShow');
         Route::get('/' . \App\Enums\RotinasAplicacaoEnum::Lead->value . '/{action}/{lead?}', \App\Http\Livewire\Admin\Lead\Form::class)->name('leadForm');
         Route::get('/leads/export', [\App\Http\Controllers\LeadController::class, 'export'])->name('leadExport');
+});
+
+/**
+ * Routes Web Site
+ * 
+ * As rotas descritas no grupo abaixo serão apresentadas para os usuários 
+ * responderem o quiz, atualmente o quiz não precisa ser logado para ser respondido.
+ * 
+ * As rotas deste grupo obrigatoriamente o componente, no metodo render,
+ * o retorno da view deve usar a função "->layout('layouts.web-site')".
+ * 
+ */
+Route::group([], function (){
+
+    Route::get('/', \App\Http\Livewire\WebSite\Home::class)->name('homeWebSite');
+
 });
