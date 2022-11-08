@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Inciso;
-use App\Enums\OptionCrudEnum;
 use App\Enums\RotinasAplicacaoEnum;
 use App\Services\Abstracts\CrudService;
 
@@ -17,7 +16,7 @@ class IncisoService extends CrudService{
             [
                 'status' => 'Status',
                 'numeroRomano' => 'Número',
-                'relacao_id' => 'Capitulo'
+                'relacao_id' => 'Id Relação'
             ]
         );
     }
