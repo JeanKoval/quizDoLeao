@@ -59,4 +59,8 @@ Route::group([], function (){
 
     Route::get('/', \App\Http\Livewire\WebSite\Home::class)->name('homeWebSite');
 
+    Route::get('/pergunta/{ordem}', \App\Http\Livewire\WebSite\Pergunta::class)->name('perguntaWebSite');
+
+    Route::get('/resultado/{opcao}', \App\Http\Livewire\WebSite\Resultado::class)->name('resultadoWebSite');
+
 });

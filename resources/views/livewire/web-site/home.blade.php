@@ -25,10 +25,12 @@
         </h1>
 
         <div class="pl-14 pt-8">
-            <button style="background-color: #136CF2;" class="text-white rounded-md px-6 py-1.5 font-black flex">
-                CLIQUE AQUI
-                <img class="pt-1 pl-2 w-6" src="{{ asset('images/seta_diagonal_direita.png') }}" alt="">
-            </button>
+            <a href="{{ route('perguntaWebSite', '01') }}">
+                <button style="background-color: #136CF2;" class="text-white rounded-md px-6 py-1.5 font-black flex" title="Clique Aqui para Responder o Quiz">
+                    CLIQUE AQUI
+                    <img class="pt-1 pl-2 w-6" src="{{ asset('images/seta_diagonal_direita.png') }}" alt="">
+                </button>
+            </a>
         </div>
 
         <div class="pl-14 pt-8 flex">
