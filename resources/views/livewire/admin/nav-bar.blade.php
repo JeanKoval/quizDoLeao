@@ -8,7 +8,7 @@
             </label>
         </div>
         <div class="flex-1">
-            <a href="/" class="btn btn-ghost normal-case text-xl">Quiz do Leão - Manegement</a>
+            <a href="{{ route('homePageAdmin') }}" class="btn btn-ghost normal-case text-xl">Quiz do Leão - Administrar</a>
         </div>
         <div class="flex-none">
             <div class="dropdown dropdown-end">
