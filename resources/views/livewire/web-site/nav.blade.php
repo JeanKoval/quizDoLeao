@@ -2,7 +2,7 @@
     <nav class="flex justify-between">
         <div style="color: #136CF2;" class="flex pl-14 font-black text-3xl">
             <h1 class="pt-8">Quiz do Leão</h1>
-            <img class="w-40" src="{{ asset('images/leao_nav.png') }}" alt="">
+            <img class="pl-2 pt-2 w-28" src="{{ asset('images/leao_nav.png') }}" alt="">
         </div>
 
         <div class="flex pr-52 pt-10 font-semibold">
