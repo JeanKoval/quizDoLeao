@@ -3,7 +3,6 @@
 namespace App\Http\Livewire\Admin\Paragrafo;
 
 use App\Models\Artigo;
-use App\Models\BaseJuridica;
 use App\Models\Capitulo;
 use App\Models\Paragrafo;
 use App\Services\ParagrafoService;
@@ -20,16 +19,13 @@ class Form extends Component
     public $status; // [ 0-Inativo | 1-Ativo]
     public $numero;
     public $descricao;
-    public $artigo;
+    public $idArtigo;
 
     // @filters
-    public $capitulo;
-    public $baseJuridica;
+    public $header = [];
 
     // @options
     public $optionsArtigo = [];
-    public $optionsCapitulo = [];
-    public $optionsBaseJuridica = [];
     public $optionsNumero = [
         '1' => '1°',
         '2' => '2°',
@@ -135,7 +131,7 @@ class Form extends Component
 
     protected $rules = [
         'numero' => 'required',
-        'artigo' => 'required',
+        'idArtigo' => 'required',
     ];
 
     public function mount($action, Paragrafo $paragrafo)
@@ -155,89 +151,40 @@ class Form extends Component
 
         $this->action = $action;
         if ($this->action != 'incluir' && !is_null($paragrafo->id)) {
-            $this->paragrafo    = $paragrafo;
-            $this->paragrafo->artigo = Artigo::findOrFail($this->paragrafo->artigo_id);
-            $this->paragrafo->capitulo = Capitulo::findOrFail($this->paragrafo->artigo->capitulo_id);
-            $this->numero       = $this->paragrafo->numero . "°";
-            $this->status       = $this->paragrafo->status;
-            $this->descricao    = $this->paragrafo->descricao;
-            $this->artigo       = $this->paragrafo->artigo->numero . "°";
-            $this->capitulo     = $this->paragrafo->capitulo->numeroRomano;
-            $this->baseJuridica = $this->paragrafo->capitulo->getBaseJuridicaAndAno();
+            $this->paragrafo = $paragrafo;
+            $this->numero    = $this->paragrafo->numero . "°";
+            $this->status    = $this->paragrafo->status;
+            $this->descricao = $this->paragrafo->descricao;
+            $this->idArtigo  = $this->paragrafo->artigo_id;
         }
 
         if ($this->action == \App\Enums\OptionCrudEnum::Incluir->value) {
-            $this->montaOptionsBaseJuridica();
+            $this->montaOptionArtigo();
         }
+    }
+
+    public function selectedItem($id){
+        $this->idArtigo = $id;
     }
 
     // monta option Artigo
-    public function montaOptionsBaseJuridica(){
-
-        // Monta as opções do select de base juridica
-        $bjs = BaseJuridica::where([
-            ['status', '=', '1']
-        ])->get();
-        if (!count($bjs)) {
-            Session::flash('messageFlashData', 'Nenhum Base Jurídica existente para criar um Paragrafo!');
-            Session::flash('typeFlashData', 'warning');
-            redirect()->route('paragrafoShow');
-        }
-        foreach ($bjs as $bj) {
-            $this->optionsBaseJuridica[$bj->id] = $bj->numero . " / " . $bj->ano;
-        }
-    }
-
-    public function montaOptionsCapitulo(){
-
-        // se entro neste função é porque a Base Juridica foi alterada, forma refaz as opções
-        $this->capitulo = '';
-        $this->optionsCapitulo = [];
-
-        if(!empty($this->baseJuridica)){
+    public function montaOptionArtigo(){
+        $this->header = [
+            'ID',
+            'Número',
+            'Base Jurídica / Ano',
+            'CAPITULO',
+        ];
+        $artigos = Artigo::where([['status', '=', '1']])->get();
+        foreach($artigos as $artigo){
+            $artigo->capitulo = Capitulo::find($artigo->capitulo_id);
             
-            // Monta as opções do select de Capitulo, amarrados a base juridica escolhida
-            $capitulos = Capitulo::where([
-                    ['status', '=', '1'],
-                    ['base_juridica_id', '=', $this->baseJuridica]
-                ]
-            )->get();
-            if (!count($capitulos)) {
-                Session::flash('messageFlashData', 'Nenhum Capitulo existente para criar um Paragrafo!');
-                Session::flash('typeFlashData', 'warning');
-                redirect()->route('paragrafoShow');
-            }
-            foreach ($capitulos as $capitulo) {
-                $this->optionsCapitulo[$capitulo->id] = $capitulo->numeroRomano;
-            }
-            $this->artigo = null;
-        }
-    }
-
-    public function montaOptionsArtigo(){
-
-        // se entro neste função é porque o Capitulo foi alterado, forma refaz as opções
-        $this->artigo = '';
-        $this->optionsArtigo = [];
-
-        if(!empty($this->capitulo)){
-            
-            // Monta as opções do select de Artigo, amarrados ao capitulo escolhido
-            $artigos = Artigo::where(
-                [
-                    ['status', '=', '1'],
-                    ['capitulo_id', '=', $this->capitulo]
-                ]
-            )->get();
-            if (!count($artigos)) {
-                Session::flash('messageFlashData', 'Nenhum Artigo existente para criar um Paragrafo!');
-                Session::flash('typeFlashData', 'warning');
-                redirect()->route('paragrafoShow');
-            }
-            foreach ($artigos as $artigo) {
-                $this->optionsArtigo[$artigo->id] = $artigo->numero . '°';
-            }
-            // dd($artigos, $this->optionsArtigo);
+            $this->optionsArtigo[$artigo->id] = [
+                'id' => $artigo->id,
+                'numero'       => $artigo->numero . '°',
+                'baseJuridica' => $artigo->capitulo->getBaseJuridicaAndAno(),
+                'capitulo'     => $artigo->capitulo->numeroRomano,
+            ];
         }
     }
 
@@ -256,7 +203,7 @@ class Form extends Component
                 'numero'        => $this->numero,
                 'status'        => $this->status,
                 'descricao'     => $this->descricao,
-                'artigo_id'     => $this->artigo
+                'artigo_id'     => $this->idArtigo
             ];
 
             $paragrafoService->create($data);
