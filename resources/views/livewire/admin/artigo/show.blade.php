@@ -17,7 +17,8 @@
                         <tr>
                             <th>Status</th>
                             <th>Número</th>
-                            <th>Capitulo / Base Jurídica / Ano</th>
+                            <th>Base Jurídica / Ano</th>
+                            <th>Capitulo</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -32,7 +33,8 @@
                                 @endif
                             </td>
                             <td> {{ $artigo->numero }}° </td>
-                            <td> {{ $artigo->capitulo->numeroRomano }} / {{ $artigo->capitulo->getBaseJuridicaAndAno() }} </td>
+                            <td> {{ $artigo->capitulo->getBaseJuridicaAndAno() }}</td>
+                            <td> {{ $artigo->capitulo->numeroRomano }} </td>
                             <td>
                                 <div>
                                     @if ($artigo->status==1)
