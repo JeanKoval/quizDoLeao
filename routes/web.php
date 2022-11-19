@@ -13,8 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', \App\Http\Livewire\WebSite\Home::class)->name('homeWebSite');
-
-Route::get('/pergunta/{ordem}', \App\Http\Livewire\WebSite\Pergunta::class)->name('perguntaWebSite');
-
-Route::get('/resultado/{opcao}', \App\Http\Livewire\WebSite\Resultado::class)->name('resultadoWebSite');
+Route::middleware('check.lead.cookie')
+    ->group( function()
+    {
+        Route::get('/', \App\Http\Livewire\WebSite\Home::class)->name('homeWebSite');
+        
+        Route::get('/pergunta', \App\Http\Livewire\WebSite\Pergunta::class)->name('perguntaWebSite');
+        
+        Route::get('/resultado', \App\Http\Livewire\WebSite\Resultado::class)->name('resultadoWebSite');
+    }
+);
