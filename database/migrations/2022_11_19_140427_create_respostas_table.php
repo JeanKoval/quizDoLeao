@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('respostas', function (Blueprint $table) {
             $table->id();
-            $table->string('resposta', 50);
+            $table->boolean('resposta');
             $table->unsignedBigInteger('pergunta_id');
             $table->foreign('pergunta_id')->references('id')->on('perguntas');
             $table->unsignedBigInteger('lead_id');

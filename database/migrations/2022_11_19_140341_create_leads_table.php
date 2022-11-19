@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('leads', function (Blueprint $table) {
             $table->id();
+            $table->uuid('cookie_lead')->unique();
+            $table->boolean('necessita_declarar')->nullable();
             $table->string('nome', 50)->nullable();
             $table->float('renda_tributavel')->nullable();
             $table->float('renda_nao_tributavel',10)->nullable();
