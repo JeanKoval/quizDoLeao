@@ -4,10 +4,7 @@ namespace App\Http\Livewire\Admin\Capitulo;
 
 use App\Models\BaseJuridica;
 use App\Models\Capitulo;
-use App\Models\LogCrud;
 use App\Services\Admin\CapituloService;
-use App\Services\Admin\LogCrudService;
-use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
@@ -21,11 +18,14 @@ class Form extends Component
     // @attributes
     public $status; // [ 0-Inativo | 1-Ativo]
     public $numeroRomano;
-    public $baseJuridica;
     public $descricao;
+    public $idBaseJuridica;
 
-    // @vars
-    public $optionsBaseJuridica;
+    // @filters
+    public $header = [];
+
+    // @options
+    public $optionsBaseJuridica = [];
     public $optionsNumeroRomano = [
         'I',
         'II',
@@ -81,7 +81,7 @@ class Form extends Component
 
     protected $rules = [
         'numeroRomano' => 'required',
-        'baseJuridica' => 'required',
+        'idBaseJuridica' => 'required',
     ];
 
     public function mount($action, Capitulo $capitulo)
@@ -102,33 +102,40 @@ class Form extends Component
         $this->action = $action;
         if ($this->action != 'incluir' && !is_null($capitulo->id)) {
             $this->capitulo = $capitulo;
-            $this->numeroRomano = $this->capitulo->numeroRomano;
-            $this->status       = $this->capitulo->status;
-            $this->baseJuridica = $this->capitulo->base_juridica_id;
-            $this->descricao    = $this->capitulo->descricao;
+            $this->numeroRomano     = $this->capitulo->numeroRomano;
+            $this->status           = $this->capitulo->status;
+            $this->descricao        = $this->capitulo->descricao;
+            $this->idBaseJuridica   = $this->capitulo->base_juridica_id;
         }
-        if (in_array($this->action, ['incluir', 'alterar'])) {
+        if($this->action == \App\Enums\OptionCrudEnum::Incluir->value) {
             $this->montaOptionBaseJuridica();
-        }else{
-            $baseJuridica = BaseJuridica::findOrFail($this->capitulo->base_juridica_id);
-            $this->baseJuridica = $baseJuridica->numero . ' / ' . $baseJuridica->ano;
         }
+    }
+
+    public function selectedItem($id){
+        $this->idBaseJuridica = $id;
     }
 
     // monta option base juridica
     public function montaOptionBaseJuridica()
     {
-        $basesJuridicas = DB::table('base_juridicas')->where([
+        $this->header = [
+            'ID',
+            'Revisão',
+            'Número',
+            'Ano'
+        ];
+        $baseJuridicas = BaseJuridica::where([
             ['status', '=', '1'],
             ['tipo', '=', '1']
         ])->get();
-        if (!count($basesJuridicas)) {
-            Session::flash('messageFlashData', 'Nenhuma Base Jurídica existente para criar um Capitulo!');
-            Session::flash('typeFlashData', 'warning');
-            redirect()->route('capituloShow');
-        }
-        foreach ($basesJuridicas as $bj) {
-            $this->optionsBaseJuridica[$bj->id] = $bj->numero . ' / ' . $bj->ano;
+        foreach($baseJuridicas as $baseJuridica){
+            $this->optionsBaseJuridica[$baseJuridica->id] = [
+                'id' => $baseJuridica->id,
+                'revisao' => $baseJuridica->revisao,
+                'numero'  => $baseJuridica->numero,
+                'ano'     => $baseJuridica->ano
+            ];
         }
     }
 
@@ -144,10 +151,10 @@ class Form extends Component
             $this->status = 1;
 
             $data = [
-                'numeroRomano'    => $this->numeroRomano,
-                'status'          => $this->status,
-                'base_juridica_id' => $this->baseJuridica,
-                'descricao'         => $this->descricao
+                'numeroRomano'      => $this->numeroRomano,
+                'status'            => $this->status,
+                'descricao'         => $this->descricao,
+                'base_juridica_id'  => $this->idBaseJuridica
             ];
 
             $capituloService->create($data);
@@ -174,6 +181,5 @@ class Form extends Component
     public function render()
     {
         return view('livewire.admin.capitulo.form');
-        // return view('layouts.modal');
     }
 }

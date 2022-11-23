@@ -18,9 +18,13 @@ class Form extends Component
     public $status; // [ 0-Inativo | 1-Ativo]
     public $numero;
     public $descricao;
-    public $capitulo;
+    public $idCapitulo;
 
-    public $optionsCapitulo;
+    // filters
+    public $header = [];
+
+    // options
+    public $optionsCapitulo = [];
     public $optionsNumero = [
         '1' => '1°',
         '2' => '2°',
@@ -126,7 +130,7 @@ class Form extends Component
 
     protected $rules = [
         'numero' => 'required',
-        'capitulo' => 'required',
+        'idCapitulo' => 'required',
     ];
 
     public function mount($action, Artigo $artigo)
@@ -148,31 +152,34 @@ class Form extends Component
         if ($this->action != 'incluir' && !is_null($artigo->id)) {
             $this->artigo       = $artigo;
             $this->numero       = $this->artigo->numero . "°";
-            $this->status       = $this->artigo->status;
             $this->descricao    = $this->artigo->descricao;
-            $this->capitulo     = $this->artigo->capitulo_id_id;
+            $this->idCapitulo   = $this->artigo->capitulo_id;
         }
-        if (in_array($this->action, ['incluir', 'alterar'])) {
+
+        if($this->action == \App\Enums\OptionCrudEnum::Incluir->value) {
             $this->montaOptionCapitulo();
-        }else{
-            $capitulo = Capitulo::findOrFail($this->artigo->capitulo_id);
-            $this->capitulo = $capitulo->numeroRomano . " / " . $capitulo->getBaseJuridicaAndAno();
         }
+    }
+
+    public function selectedItem($id){
+        $this->idCapitulo = $id;
     }
 
     // monta option capitulo
     public function montaOptionCapitulo()
     {
-        $capitulos = Capitulo::where([
-            ['status', '=', '1']
-        ])->get();
-        if (!count($capitulos)) {
-            Session::flash('messageFlashData', 'Nenhum Capitulo existente para criar um Artigo!');
-            Session::flash('typeFlashData', 'warning');
-            redirect()->route('capituloShow');
-        }
-        foreach ($capitulos as $capitulo) {
-            $this->optionsCapitulo[$capitulo->id] = $capitulo->numeroRomano . " / " . $capitulo->getBaseJuridicaAndAno();
+        $this->header = [
+            'ID',
+            'Número',
+            'Base Jurídica / Ano'
+        ];
+        $capitulos = Capitulo::where([['status', '=', '1']])->get();
+        foreach($capitulos as $capitulo){
+            $this->optionsCapitulo[$capitulo->id] = [
+                'id' => $capitulo->id,
+                'numero'       => $capitulo->numeroRomano,
+                'baseJuridica' => $capitulo->getBaseJuridicaAndAno()
+            ];
         }
     }
 
@@ -191,7 +198,7 @@ class Form extends Component
                 'numero'        => $this->numero,
                 'status'        => $this->status,
                 'descricao'     => $this->descricao,
-                'capitulo_id'   => $this->capitulo
+                'capitulo_id'   => $this->idCapitulo
             ];
 
             $artigoService->create($data);
@@ -218,6 +225,5 @@ class Form extends Component
     public function render()
     {
         return view('livewire.admin.artigo.form');
-        // return view('layouts.modal');
     }
 }
