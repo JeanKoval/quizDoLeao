@@ -9,7 +9,7 @@ use App\Models\Alinea;
 use App\Models\Inciso;
 use App\Models\Paragrafo;
 use App\Models\Pergunta;
-use App\Services\PerguntaService;
+use App\Services\Admin\PerguntaService;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
@@ -26,6 +26,7 @@ class Form extends Component
     public $descricao;
     public $tipoRelacao;
     public $idRelacao;
+    public $campoManipulacaoLead;
     
     // @filters
     public $header = [];
@@ -36,7 +37,8 @@ class Form extends Component
         'revisao'        => 'required',
         'descricao'      => 'required',
         'tipoRelacao'    => 'required',
-        'idRelacao' => 'required'
+        'idRelacao'      => 'required',
+        'campoManipulacaoLead' => 'required'
     ];
 
     public function mount($action, Pergunta $pergunta)
@@ -165,6 +167,7 @@ class Form extends Component
                 'ordem' => $this->ordem,
                 'revisao' => $this->revisao,
                 'descricao' => $this->descricao,
+                'campo_manipulacao_lead' => $this->campoManipulacaoLead,
                 'tipo_relacao' => $this->tipoRelacao,
                 'relacao_id' => $this->idRelacao
             ]);
@@ -177,6 +180,7 @@ class Form extends Component
                     'ordem' => $this->ordem,
                     'revisao' => $this->revisao,
                     'descricao' => $this->descricao,
+                    'campo_manipulacao_lead' => $this->campoManipulacaoLead,
                     'tipo_relacao' => $this->tipoRelacao,
                     'relacao_id' => $this->idRelacao
                 ]

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services\Abstracts;
+namespace App\Services\Admin\Abstracts;
 
 use App\Enums\OptionCrudEnum;
 use App\Enums\RotinasAplicacaoEnum;
-use App\Services\LogCrudService;
+use App\Services\Admin\LogCrudService;
 use Illuminate\Database\Eloquent\Model;
 
 abstract class CrudService{

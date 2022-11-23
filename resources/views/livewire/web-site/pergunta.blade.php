@@ -2,7 +2,7 @@
     <div class="text-center pl-24 w-full pt-24">
         <div>
             <span style="color: #0B5CD5;" class="font-black text-4xl">
-                Você recebeu rendimentos tributáveis, sujeitos ao ajuste na declaração, cuja soma foi superior a R$ 28.559,70 ?
+                {{ $perguntaAtual->descricao }}
             </span>
         </div>
 
@@ -15,16 +15,12 @@
         </div>
 
         <div class="flex justify-center pt-6">
-            <a href="{{ route('resultadoWebSite', base64_encode('precisa')) }}">
-                <button style="background-color: #136CF2;" class="mr-4 text-white rounded-md px-6 py-1.5 font-black flex">
-                    SIM
-                </button>
-            </a>
-            <a href="{{ route('resultadoWebSite', base64_encode('nao_precisa')) }}">
-                <button style="background-color: #136CF2;" class="ml-4 text-white rounded-md px-6 py-1.5 font-black flex">
-                    NÃO
-                </button>
-            </a>
+            <button wire:click="enviaResposta(1)" style="background-color: #136CF2;" class="mr-4 text-white rounded-md px-6 py-1.5 font-black flex">
+                SIM
+            </button>
+            <button wire:click="enviaResposta(0)" style="background-color: #136CF2;" class="ml-4 text-white rounded-md px-6 py-1.5 font-black flex">
+                NÃO
+            </button>
         </div>
     </div>
 

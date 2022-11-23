@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
 use App\Enums\RotinasAplicacaoEnum;
 use App\Models\Pergunta;
-use App\Services\Abstracts\CrudService;
+use App\Services\Admin\Abstracts\CrudService;
 
 class PerguntaService extends CrudService{
 
@@ -18,6 +18,7 @@ class PerguntaService extends CrudService{
                 'ordem' => 'Ordem',
                 'revisao' => 'Revisão',
                 'descricao' => 'Descrição',
+                'campo_manipulacao_lead' => 'Campo de Manipulação do Lead',
                 'tipo_relacao' => 'Tipo Relação',
                 'relacao_id' => 'Id da Relação'
             ]

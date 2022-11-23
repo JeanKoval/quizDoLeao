@@ -7,7 +7,7 @@ use App\Enums\OptionIncisoEnum;
 use App\Models\Alinea;
 use App\Models\Inciso;
 use App\Models\Paragrafo;
-use App\Services\AlineaService;
+use App\Services\Admin\AlineaService;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 

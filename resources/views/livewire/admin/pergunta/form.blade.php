@@ -3,7 +3,7 @@
     <div class="card m-5 bg-base-100 shadow-xl">
         <div class="card-body">
             <form wire:submit.prevent="save">
-                <div class="grid grid-cols-2">
+                <div class="grid grid-cols-3">
 
                     <div class="form-control py-2">
                         <label class="label">
@@ -22,6 +22,28 @@
                         @error('ordem')
                         <p class="text-red-500 text-xs italic">{{$message}}</p>
                         @enderror
+                    </div>
+
+                    <div class="form-control py-2">
+                        <label class="label">
+                            <span class="label-text">
+                                Campo de Manipulação do Lead
+                                <span class="text-red-700" title="Campo obrigatório">*</span>
+                            </span>
+                        </label>
+                        @if (in_array($action, ['visualizar','revisao', 'inativar']))
+                        <input readonly wire:model="campoManipulacaoLead" class="input input-bordered w-full max-w-xs readonly" />
+                        @else
+                        <select class="input input-bordered w-full max-w-xs" wire:model="campoManipulacaoLead">
+                            <option value="" selected>Selecione...</option>
+                            @foreach(\App\Enums\OptionManipulacaoLeadEnum::cases() as $option)
+                            <option value="{{$option->value}}">{{$option->value}}</option>
+                            @endforeach
+                        </select>
+                        @error('tipoRelacao')
+                        <p class="text-red-500 text-xs italic">{{$message}}</p>
+                        @enderror
+                        @endif
                     </div>
                 </div>
 

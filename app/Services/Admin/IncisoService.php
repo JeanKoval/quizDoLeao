@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
 use App\Models\Inciso;
 use App\Enums\RotinasAplicacaoEnum;
-use App\Services\Abstracts\CrudService;
+use App\Services\Admin\Abstracts\CrudService;
 
 class IncisoService extends CrudService{
 

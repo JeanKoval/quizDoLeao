@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin\Capitulo;
 
 use App\Models\BaseJuridica;
 use App\Models\Capitulo;
-use App\Services\CapituloService;
+use App\Services\Admin\CapituloService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;

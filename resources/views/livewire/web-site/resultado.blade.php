@@ -3,7 +3,7 @@
         <span style="color: #0B5CD5;" class="font-black text-4xl">
             De acordo com as suas respostas, você
             <span style="color: #0BD598;">
-                @if($opcao == 'precisa')
+                @if($leadAtual->necessita_declarar)
                     {{ $MENSAGEM_SE_SIM }}
                 @else
                     {{ $MENSAGEM_SE_NÃO }}
@@ -12,7 +12,7 @@
             fazer a sua Declaração do Imposto de Renda.
         </span>
 
-        @if($opcao != 'precisa')
+        @if(! $leadAtual->necessita_declarar)
         <div class="font-semibold pt-4">
             <span>
                 <span class="text-red-700" title="Campo obrigatório">*</span>

@@ -16,11 +16,11 @@ class CheckLeadCookie
      */
     public function handle(Request $request, Closure $next)
     {
-        $this->verificaCookieDoLead();
+        self::verificaCookieDoLead();
         return $next($request);
     }
 
-    public function verificaCookieDoLead()
+    public static function verificaCookieDoLead()
     {
         if(! isset($_COOKIE['UUID_LEAD'])){
             setcookie('UUID_LEAD', \Illuminate\Support\Str::uuid()->toString(), time()+(86400*5));

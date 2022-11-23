@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin\BaseJuridica;
 
 use App\Models\BaseJuridica;
-use App\Services\BaseJuridicaService;
+use App\Services\Admin\BaseJuridicaService;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 
