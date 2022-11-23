@@ -7,7 +7,7 @@ use App\Models\Artigo;
 use App\Models\Capitulo;
 use App\Models\Inciso;
 use App\Models\Paragrafo;
-use App\Services\IncisoService;
+use App\Services\Admin\IncisoService;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 

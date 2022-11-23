@@ -22,8 +22,11 @@ class Show extends Component
         $this->leads = \App\Models\Lead::all();
 
         foreach($this->leads as &$lead){
-            $lead->renda_tributavel = number_format($lead->renda_tributavel, 2, ',', '.');
-            $lead->renda_nao_tributavel = number_format($lead->renda_nao_tributavel, 2, ',', '.');
+            if( is_null($lead->necessita_declarar) ){
+                $lead->necessita_declarar = 'NULL';
+            }else{
+                $lead->necessita_declarar = $lead->necessita_declarar ? "Sim" : "Não";
+            }
         }
     }
 

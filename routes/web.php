@@ -21,5 +21,7 @@ Route::middleware('check.lead.cookie')
         Route::get('/pergunta', \App\Http\Livewire\WebSite\Pergunta::class)->name('perguntaWebSite');
         
         Route::get('/resultado', \App\Http\Livewire\WebSite\Resultado::class)->name('resultadoWebSite');
+
+        Route::get('/informações-necessarias', \App\Http\Livewire\WebSite\CapturaDadosLead::class)->name('capturaDadosLeadWebSite');
     }
 );

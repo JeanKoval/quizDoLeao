@@ -18,14 +18,17 @@ return new class extends Migration
             $table->uuid('cookie_lead')->unique();
             $table->boolean('necessita_declarar')->nullable();
             $table->string('nome', 50)->nullable();
-            $table->float('renda_tributavel')->nullable();
-            $table->float('renda_nao_tributavel',10)->nullable();
             $table->string('email', 100)->nullable();
             $table->string('telefone', 11)->nullable();
-            $table->string('ano_nascimento', 4)->nullable();
-            $table->string('profissao', 50)->nullable();
-            $table->string('cidade', 30)->nullable();
-            $table->string('estado', 2)->nullable();
+            $table->boolean('renda_tributavel')->nullable();
+            $table->boolean('renda_nao_tributavel')->nullable();
+            $table->boolean('ganho_de_capital')->nullable();
+            $table->boolean('opera_bolsa_de_valores')->nullable();
+            $table->boolean('receita_bruta_atividade_rural')->nullable();
+            $table->boolean('compensar_prejuizo_atividade_rural')->nullable();
+            $table->boolean('bens_e_direitos')->nullable();
+            $table->boolean('residente_no_brasil')->nullable();
+            $table->boolean('isencao_imoveis')->nullable();
             $table->timestamps();
         });
     }

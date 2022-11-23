@@ -4,7 +4,7 @@ namespace App\Http\Livewire\Admin\Artigo;
 
 use App\Models\Artigo;
 use App\Models\Capitulo;
-use App\Services\ArtigoService;
+use App\Services\Admin\ArtigoService;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 

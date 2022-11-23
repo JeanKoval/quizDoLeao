@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('ordem', 2);
             $table->text('descricao');
             $table->integer('status');
-            // $table->string('mensagem_tooltip');
+            $table->string('campo_manipulacao_lead');
             $table->enum('tipo_relacao', [
                 'alinea',
                 'paragrafo',

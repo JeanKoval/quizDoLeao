@@ -6,7 +6,7 @@ use App\Models\Artigo;
 use App\Models\BaseJuridica;
 use App\Models\Capitulo;
 use App\Models\Paragrafo;
-use App\Services\ParagrafoService;
+use App\Services\Admin\ParagrafoService;
 use Illuminate\Support\Facades\Session;
 use Livewire\Component;
 

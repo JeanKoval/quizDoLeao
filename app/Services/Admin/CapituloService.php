@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
 use App\Models\Capitulo;
 use App\Enums\OptionCrudEnum;
 use App\Enums\RotinasAplicacaoEnum;
-use App\Services\Abstracts\CrudService;
+use App\Services\Admin\Abstracts\CrudService;
 
 class CapituloService extends CrudService{
 

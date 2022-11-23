@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Admin;
 
 use App\Enums\RotinasAplicacaoEnum;
 use App\Models\BaseJuridica;
-use App\Services\Abstracts\CrudService;
+use App\Services\Admin\Abstracts\CrudService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
