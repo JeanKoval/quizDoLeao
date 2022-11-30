@@ -1,1 +1,1 @@
-<img src="{{ asset('images/leao_nav.png') }}" alt="">
+<img src="{{ asset('images/leao_logo.png') }}" alt="">
