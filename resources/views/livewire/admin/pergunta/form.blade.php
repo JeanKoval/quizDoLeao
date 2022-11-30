@@ -112,6 +112,25 @@
                     @enderror
                 </div>
 
+                <div class="form-control py-2">
+                    <label class="label">
+                        <span class="label-text">
+                            Mensagem Auxiliar
+                            <span class="text-red-700" title="Campo obrigatório">*</span>
+                        </span>
+                    </label>
+                    <textarea 
+                        wire:model="mensagemAuxiliar"
+                        class="textarea textarea-bordered" 
+                        placeholder="Descrição..."
+                        @if (in_array($action, ['visualizar', 'inativar'])) { readonly } @endif
+                        >
+                    </textarea>
+                    @error('mensagemAuxiliar')
+                    <p class="text-red-500 text-xs italic">{{$message}}</p>
+                    @enderror
+                </div>
+
                 @livewire('admin.button-confirm-form', [$action])
             </form>
         </div>

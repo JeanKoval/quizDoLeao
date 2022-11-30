@@ -27,6 +27,7 @@ class Form extends Component
     public $tipoRelacao;
     public $idRelacao;
     public $campoManipulacaoLead;
+    public $mensagemAuxiliar;
     
     // @filters
     public $header = [];
@@ -38,7 +39,8 @@ class Form extends Component
         'descricao'      => 'required',
         'tipoRelacao'    => 'required',
         'idRelacao'      => 'required',
-        'campoManipulacaoLead' => 'required'
+        'campoManipulacaoLead' => 'required',
+        'mensagemAuxiliar' => 'required'
     ];
 
     public function mount($action, Pergunta $pergunta)
@@ -66,6 +68,7 @@ class Form extends Component
             $this->ordem     = $this->pergunta->ordem;
             $this->revisao   = $this->pergunta->revisao;
             $this->descricao = $this->pergunta->descricao;
+            $this->mensagemAuxiliar = $this->pergunta->mensagem_auxiliar;
             $this->tipoRelacao = ucfirst($this->pergunta->tipo_relacao);
             $this->idRelacao = $this->pergunta->relacao_id;
             if($isRevisao){
@@ -167,6 +170,7 @@ class Form extends Component
                 'ordem' => $this->ordem,
                 'revisao' => $this->revisao,
                 'descricao' => $this->descricao,
+                'mensagem_auxiliar' => $this->mensagemAuxiliar,
                 'campo_manipulacao_lead' => $this->campoManipulacaoLead,
                 'tipo_relacao' => $this->tipoRelacao,
                 'relacao_id' => $this->idRelacao
@@ -180,6 +184,7 @@ class Form extends Component
                     'ordem' => $this->ordem,
                     'revisao' => $this->revisao,
                     'descricao' => $this->descricao,
+                    'mensagem_auxiliar' => $this->mensagemAuxiliar,
                     'campo_manipulacao_lead' => $this->campoManipulacaoLead,
                     'tipo_relacao' => $this->tipoRelacao,
                     'relacao_id' => $this->idRelacao

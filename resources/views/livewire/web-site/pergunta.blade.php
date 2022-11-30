@@ -6,13 +6,23 @@
             </span>
         </div>
 
-        <div class="pt-4 font-medium text-xs">
-            <span>
-                PERGUNTA REALIZADA COM BASE NA:
-                <br>
-                INSTRUÇÃO NORMATIVA RFB Nº 2065, DE 24 DE FEVEREIRO DE 2022
-            </span>
+        <div class="pt-4 font-medium text-xs justify-between flex">
+            <div>
+                <span>
+                    PERGUNTA REALIZADA COM BASE NA:
+                    <br>
+                    INSTRUÇÃO NORMATIVA RFB Nº 2065, DE 24 DE FEVEREIRO DE 2022
+                </span>
+            </div>
+
+            <div class="tooltips font-black underline mt-2">
+                Ajuda para Responder?
+                <span>
+                    {{ $perguntaAtual->mensagem_auxiliar }}
+                </span>
+            </div>
         </div>
+
 
         <div class="flex justify-center pt-6">
             <button wire:click="enviaResposta(1)" style="background-color: #136CF2;" class="mr-4 text-white rounded-md px-6 py-1.5 font-black flex">

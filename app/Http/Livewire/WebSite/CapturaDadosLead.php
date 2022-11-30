@@ -17,8 +17,8 @@ class CapturaDadosLead extends Component
 
     protected $rules = [
         'nome' => 'required|string',
-        'email' => 'required|string',
-        'telefone' => 'required|min:11',
+        'email' => 'required|email',
+        'telefone' => 'required|min:11|max:11',
     ];
 
     public function save()
