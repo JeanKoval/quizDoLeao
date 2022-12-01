@@ -23,5 +23,7 @@ Route::middleware('check.lead.cookie')
         Route::get('/resultado', \App\Http\Livewire\WebSite\Resultado::class)->name('resultadoWebSite');
 
         Route::get('/informações-necessarias', \App\Http\Livewire\WebSite\CapturaDadosLead::class)->name('capturaDadosLeadWebSite');
+
+        Route::get('/termo-de-privacidade', \App\Http\Livewire\WebSite\TermoDePrivacidade::class)->name('termoDePrivacidade');
     }
 );
