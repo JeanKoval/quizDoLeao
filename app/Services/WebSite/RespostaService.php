@@ -60,6 +60,6 @@ class RespostaService
             }
         }
 
-        return max( intval( round( ($mediaSegundos/60) ) / $leads ), 1) ;
+        return max( intval( round( ($mediaSegundos/60) ) / $leads ), 1);
     }
 }
