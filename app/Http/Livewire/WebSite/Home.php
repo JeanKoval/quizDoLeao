@@ -3,18 +3,17 @@
 namespace App\Http\Livewire\WebSite;
 
 use App\Models\Lead;
+use App\Services\WebSite\RespostaService;
 use Livewire\Component;
 
 class Home extends Component
 {
-    public $tempoMedioRealizacaoQuiz = 4;
-    public $qtdePessoasReponderam = 1500;
-
     public function render()
     {
-        $this->qtdePessoasReponderam = count(Lead::all());
+        $qtdePessoasReponderam = count(Lead::all());
+        $tempoMedioRealizacaoQuiz = RespostaService::getTempoMedioParaResponderOQuiz();
 
-        return view('livewire.web-site.home')
+        return view('livewire.web-site.home', compact('qtdePessoasReponderam', 'tempoMedioRealizacaoQuiz'))
             ->layout('layouts.web-site')
             ->slot('main');
     }

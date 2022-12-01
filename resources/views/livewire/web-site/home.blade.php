@@ -20,7 +20,7 @@
                 FAÇA O QUIZ DO LEÃO!
             </span><br>
             <span style="color: #136CF2;">
-                O QUIZ LEVA EM MÉDIA {{ $tempoMedioRealizacaoQuiz }} MINUTOS.
+                O QUIZ LEVA EM MÉDIA {{ $tempoMedioRealizacaoQuiz }} MINUTO(S).
             </span>
         </h1>
 
