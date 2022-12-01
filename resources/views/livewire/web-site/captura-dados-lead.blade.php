@@ -26,7 +26,24 @@
                     @enderror
                 </div>
 
-                <button style="background-color: #136CF2;" class="text-white rounded-md mt-4 px-6 py-1.5 font-black flex text-center" type="submit">Continuar</button>
+                <div class="pt-4 block">
+                    <input type="checkbox" wire:model="aceiteDoTermo">
+                    <label class="text-xs">
+                        Declaro estar ciente com o envio das informações contidas neste formulário,
+                        <br>
+                        assim como estar de acordo com o 
+                        <a href="{{ route('termoDePrivacidade') }}" target="_blank" class="font-black">
+                            Termo de Privacidade.
+                        </a>
+                    </label>
+                    @error('aceiteDoTermo')
+                    <p class="text-red-500 text-xs italic">{{$message}}</p>
+                    @enderror
+                </div>
+                
+                <div class="grid">
+                    <button style="background-color: #136CF2;" class="text-white rounded-md mt-4 px-6 py-1.5 font-black text-center" type="submit">Continuar</button>
+                </div>
             </form>
         </div>
     </div>
